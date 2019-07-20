@@ -2,12 +2,12 @@ import example from '../../api/example'
 import * as types from '../mutation-types'
 
 const state = {
-  // 医生列表
+  // 用户信息
   userInfo: [],
 };
 
 const mutations = {
-  // 设置医生列表
+  // 设置用户信息
   [types.SET_USER_INFO](state, data) {
     state.userInfo = data
   },

@@ -1,5 +1,5 @@
 ## vue-cli-project
-- 👨‍💻‍已构建配置好的vuejs全家桶项目，统一管理后端接口 | 获取数据 | 请求数据，已包含vue-router，vuex，api，axios. webpack, 储存用vue-ls, 异步async/await, css sass
+- 已构建配置好的vuejs全家桶项目，统一管理后端接口 | 获取数据 | 请求数据，已包含vue-router，vuex，api，axios. webpack, 储存用vue-ls, 异步async/await, css sass
 
 ### 使用
 
@@ -288,13 +288,11 @@ export default {
     }),
 
     /**
-     * 获取医生列表
+     * 获取用户信息
      * @returns {Promise<void>}
      */
     async fetchData() {
-      // 医生类型
       let params = { phone: 15801252644, password: 'wgz080166' };
-      // 获取医生列表
       try {
         const data = await this.getUserInfo(params);
         this.resData = data.data.account;
