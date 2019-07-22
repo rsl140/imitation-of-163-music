@@ -50,17 +50,17 @@ Util.ajax.interceptors.response.use(response => {
   switch (code) {
     case 401:
       // 处理401错误
-      alert("权限不足");
+      console.log("权限不足");
       Vue.ls.remove('BOBLOG_ADMIN_TOKEN');
       window.location.href = '/login';
       break;
 
     case 404:
-      alert("404不存在");
+      console.log("404不存在");
       break;
 
     case 412:
-      alert(res.data.message)
+      console.log(res.data.message)
       break;
 
     case 422:
@@ -74,15 +74,15 @@ Util.ajax.interceptors.response.use(response => {
         }
         errors = arr.length > 0 ? arr.join('，') : arr;
       }
-      alert(errors)
+      console.log(errors)
       break;
 
     case 500:
-      alert(res.data.message)
+      console.log(res.data.message)
       break;
 
     default:
-      alert(res.data.message)
+      console.log(res.data.message)
   }
 
   // 关闭loading
