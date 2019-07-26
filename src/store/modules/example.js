@@ -24,7 +24,7 @@ const actions = {
    */
   async getUserInfo({state, commit}, params) {
     let ret = await example.userInfo(params);
-    commit(types.SET_USER_INFO, ret.data.data);
+    commit(types.SET_USER_INFO, ret.data.account);
     return ret;
   },
 };

@@ -52,7 +52,7 @@ export default {
      */
     async fetchData() {
       // 用户信息，填写自己的网易云音乐账号
-      let params = { phone: 手机号, password: '密码' };
+      let params = { phone: 手机号, password: '111' };
       // 获取用户信息
       try {
         const data = await this.getUserInfo(params);
@@ -72,7 +72,7 @@ export default {
      */
     routeLink(link) {
       this.$router.push({ path: link });
-    },
+    }
   },
 };
 </script>
