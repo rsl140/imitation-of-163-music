@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'playlist',
+  name: 'Playlist',
   components: {},
   data() {
     return {

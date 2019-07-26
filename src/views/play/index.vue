@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'play',
+  name: 'Play',
   components: {},
   data() {
     return {

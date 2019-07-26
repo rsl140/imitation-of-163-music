@@ -10,6 +10,7 @@
       </p>
       <h1>请求返回信息</h1>
       <p>{{resData}}</p>
+      <router-link to="/play/index">播放器</router-link>
     </div>
   </section>
 </template>

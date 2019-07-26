@@ -17,14 +17,31 @@ export default new Router({
     {
       // 重定向首页
       path: '/',
-      redirect: '/example/index'
+      redirect: '/login'
     },
     {
-      // 测试页
-      path: '/example/index',
+      // 登录页
+      path: '/login',
+      name: 'Login',
       component(resolve) {
-        require(['../views/example/index.vue'], resolve);
+        require(['../views//login/index.vue'], resolve);
       }
     },
+    {
+      // 歌单页
+      path: '/play/index',
+      name: 'Play',
+      component(resolve) {
+        require(['../views/play/index.vue'], resolve);
+      }
+    },
+    {
+      // 播放器页面
+      path: '/playlist/index',
+      name: 'Playlist',
+      component(resolve) {
+        require(['../views/playlist/index.vue'], resolve);
+      }
+    }
   ]
 })
