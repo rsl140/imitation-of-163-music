@@ -6,6 +6,7 @@ import VueLocalStorage from 'vue-ls';
 import 'lib-flexible/flexible';
 import './assets/styles/border.css'
 import './assets/styles/reset.css'
+import './assets/styles/iconfont.css'
 
 Vue.config.productionTip = false
 Vue.use(VueLocalStorage);
