@@ -9,7 +9,11 @@
   <div class="play">
     <div class="play-bg_cover" style="background-image: url('http://p2.music.126.net/fkqFqMaEt0CzxYS-0NpCog==/18587244069235039.jpg');"></div>
     <div class="play-header">
-      <div class="iconfont play-header_arrow">&#xe7ec;</div>
+      <div
+      class="iconfont play-header_arrow"
+      @click="preClick"
+      >
+      &#xe7ec;</div>
       <div class="play-header_title">
         <div class="play-header_name">光年之外</div>
         <div class="play-header_singer">G.E.M.邓紫棋</div>
@@ -57,6 +61,14 @@ export default {
     }
   },
   methods: {
+    /**
+     * @description: 返回上一级
+     * @param {type}
+     * @return: void
+     */
+    preClick () {
+      this.$router.push({ name: 'Playlist' })
+    }
   }
 }
 </script>
@@ -89,6 +101,7 @@ export default {
     display: flex;
     padding: .3rem .2rem;
     color: #fff;
+    z-index: 3;
 
     &_arrow {
       font-size: .63rem;
@@ -127,6 +140,7 @@ export default {
     padding: 2rem 0;
     overflow: hidden;
     position: relative;
+    z-index: 3;
     .play-cd {
       &_wrap {
         position: relative;
@@ -178,6 +192,8 @@ export default {
     flex-direction: column;
     padding: .05rem .2rem;
     color: #fff;
+    z-index: 3;
+
     &_box {
       display: flex;
       justify-content:space-between;
