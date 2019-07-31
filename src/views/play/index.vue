@@ -2,11 +2,12 @@
  * @Author: rsl
  * @Date: 2019-07-25
  * @LastEditors: rsl
- * @LastEditTime: 2019-07-30
+ * @LastEditTime: 2019-07-31
  * @Description: 播放器页面
  -->
 <template>
   <div class="play">
+    <div class="play-bg_cover" style="background-image: url('http://p2.music.126.net/fkqFqMaEt0CzxYS-0NpCog==/18587244069235039.jpg');"></div>
     <div class="play-header">
       <div class="iconfont play-header_arrow">&#xe7ec;</div>
       <div class="play-header_title">
@@ -15,12 +16,11 @@
       </div>
     </div>
     <div class="play-content">
+      <img src="../../assets/img/rod.png" class="play-cd_rod">
       <div class="play-cd_wrap">
         <img class="play-cd_cover" src="../../assets/img/cd.png">
         <!-- <img class="play-cd_defaultimg" src="../../assets/img/default-cover.jpg"> -->
-        <div class="play-cd_defaultimg">
-
-        </div>
+        <div class="play-cd_defaultimg"></div>
       </div>
     </div>
     <div class="play-footer">
@@ -70,7 +70,20 @@ export default {
   display: flex;
   flex-direction: column;
   background: rgba(0, 0, 0, .3);
-
+  &-bg {
+    &_cover {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: .3;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      filter: blur(2.66667vw);
+    }
+  }
   &-header {
     height: 1rem;
     display: flex;
@@ -99,11 +112,21 @@ export default {
       font-size: .22rem;
     }
   }
-
+  @keyframes rotate
+  {
+    0% {
+      transform: rotate(0)
+    }
+    100% {
+      transform: rotate(360deg)
+    }
+  }
   &-content {
     flex: 1;
     width: 100%;
     padding: 2rem 0;
+    overflow: hidden;
+    position: relative;
     .play-cd {
       &_wrap {
         position: relative;
@@ -111,6 +134,8 @@ export default {
         margin: 0 auto;
         border-radius: 50%;
         border: .01rem solid #eaeaea85;
+        animation: rotate 10s linear infinite running;
+        animation-play-state: paused;
       }
       &_cover {
         display: block;
@@ -131,6 +156,18 @@ export default {
         margin-left: -32%;
         margin-top: -32%;
         z-index: -1;
+      }
+      &_rod {
+        position: absolute;
+        top: -.4rem;
+        left: 50%;
+        display: block;
+        width: 3rem;
+        margin-left: -5.33333vw;
+        transform-origin: 4vw 4vw;
+        transform: rotate(-30deg);
+        transition: transform .5s ease;
+        z-index: 2;
       }
     }
   }
