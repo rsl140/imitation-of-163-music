@@ -2,26 +2,37 @@
  * @Author: rsl
  * @Date: 2019-07-25
  * @LastEditors: rsl
- * @LastEditTime: 2019-07-31
+ * @LastEditTime: 2019-08-02
  * @Description: 歌单页
  -->
 <template>
   <div>
     <div class="list">
       <div class="list-introduce_wrap">
-        <div class="list-nav">1</div>
-        <div class="list-introduce_content">2</div>
+        <div class="list-nav">
+          <list-nav></list-nav>
+        </div>
+        <div class="list-introduce_content">
+          <list-introduction></list-introduction>
+        </div>
       </div>
-      <div class="list-list">3</div>
+      <div class="list-list">
+        <list-music-card v-for="(item, index) in 8" :index="index + 1" :key="index"></list-music-card>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { ListIntroduction, ListMusicCard, ListNav } from './components'
 
 export default {
   name: 'Playlist',
-  components: {},
+  components: {
+    ListIntroduction,
+    ListMusicCard,
+    ListNav
+  },
   data() {
     return {
     }
@@ -35,22 +46,16 @@ export default {
 <style lang="scss" scoped>
 .list {
   position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
   width: 100%;
+  top: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
 
-  &-nav {
-    width: 100%;
-    height: 1rem;
-  }
-
   &-introduce {
+
     &_wrap {
-      width: 100%;
-      height: 60vw;
+      height: 70vw;
       display: flex;
       flex-direction: column;
     }
@@ -58,10 +63,6 @@ export default {
     &_content {
       flex: 1;
     }
-  }
-  &-list {
-    width: 100%;
-    flex: 1;
   }
 }
 </style>
