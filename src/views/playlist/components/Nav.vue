@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-08-01
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-01
+ * @LastEditTime: 2019-08-04
  * @Description: 歌单页音乐列表导航
  -->
 <template>
@@ -42,7 +42,6 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background: rgba(0, 0, 0, .3);
     padding: .1rem .4rem;
     height: .7rem;
   }

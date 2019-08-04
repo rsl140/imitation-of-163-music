@@ -2,28 +2,29 @@
  * @Author: rsl
  * @Date: 2019-08-01
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-02
+ * @LastEditTime: 2019-08-04
  * @Description: 歌单页音乐列表头部歌单介绍信息
  -->
 <template>
   <div class="intro">
     <div class="intro-wrap">
       <div class="intro-img">
-        <img src="../../../assets/img/default-cover.jpg" width="100%">
+        <img :src="info.coverImgUrl" width="100%">
       </div>
       <div class="intro-comment">
         <div class="intro-comment_title">
-        的数据啊看到啦撒即可的撒
+        {{info.name}}
         </div>
-        <div class="intro-comment_author">
-          大萨达撒多
+        <div class="intro-comment_author" v-if="info.creator">
+          {{info.creator.nickname}}
         </div>
         <div class="intro-comment_summary">
-          等数据库的卡萨来解答了等数据库的卡萨来解答了等数据库的卡萨来解答了
+          <span v-if="info.description">{{info.description | filtersDescription}}</span>
+          <span v-else>编辑简介></span>
         </div>
       </div>
     </div>
-    <list-play-title></list-play-title>
+    <list-play-title :info="info"></list-play-title>
   </div>
 </template>
 
@@ -34,6 +35,24 @@ export default {
   name: 'PlaylistIntroduction',
   components: {
     ListPlayTitle
+  },
+  props: {
+    info: {
+      type: [Array, Object],
+      default: function () {
+        return []
+      },
+      required: true
+    }
+  },
+  filters: {
+    filtersDescription: function (description) {
+        if (description.length > 40) {
+          return description.slice(0, 38) + '...'
+        } else {
+          return description
+        }
+    }
   },
   data() {
     return {
@@ -49,7 +68,6 @@ export default {
 .intro {
   display: flex;
   flex-direction: column;
-  background: rgba(0, 0, 0, .3);
   height: 100%;
   width: 100%;
 
@@ -86,7 +104,7 @@ export default {
       color: #666;
     }
 
-    &_summary{
+    &_summary {
       height: 25%;
       line-height: .6rem;
       color: #666;

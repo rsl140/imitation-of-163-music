@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-07-31
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-02
+ * @LastEditTime: 2019-08-04
  * @Description: 歌单页音乐列表卡片
  -->
 <template>
@@ -13,10 +13,21 @@
       </div>
       <div class="mcard-content">
         <div class="mcard-content_title">
-          Don't Disturb This Groove
+          {{musicInfo.name}}
         </div>
         <div class="mcard-content_author">
-          Me'Shell Ndeg
+          <span v-for="(item, index) in musicInfo.ar" :key="index">
+            <template v-if="musicInfo.ar.length === index + 1">
+              {{item.name}}
+            </template>
+            <template v-else>
+              {{item.name}}/
+            </template>
+          </span>
+          -
+          <span>
+            {{musicInfo.al.name}}
+          </span>
         </div>
       </div>
     </div>
@@ -32,6 +43,13 @@ export default {
       type: [Number],
       default: null,
       required: false
+    },
+    musicInfo: {
+      type: [Array, Object],
+      default: function () {
+        return []
+      },
+      required: true
     }
   },
   data() {
@@ -60,7 +78,8 @@ export default {
   &-index {
     font-size: .4rem;
     color: #999;
-    width: .6rem;
+    text-align: center;
+    margin-right: .4rem;
   }
 
   &-content {

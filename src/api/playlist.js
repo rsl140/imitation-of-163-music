@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-08-03
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-03
+ * @LastEditTime: 2019-08-04
  * @Description: 歌单
  */
 import fetch from './fetch';
@@ -10,6 +10,6 @@ import fetch from './fetch';
 export default {
   // 获取歌单
   playLists (params) {
-    return fetch.get('/user/playlist', params);
+    return fetch.get('/playlist/detail', params);
   }
 }

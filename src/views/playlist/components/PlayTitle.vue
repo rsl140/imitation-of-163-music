@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-08-02
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-02
+ * @LastEditTime: 2019-08-04
  * @Description: 歌单列表头（播放全部）
  -->
 <template>
@@ -15,10 +15,10 @@
         播放全部
       </div>
       <div class="play-count">
-        (共117首)
+        (共{{info.trackCount}}首)
       </div>
-      <div class="play-collection">
-        收藏10000
+      <div class="play-collection" v-if="info.subscribedCount > 0">
+        收藏:{{info.subscribedCount}}
       </div>
     </div>
   </div>
@@ -28,7 +28,16 @@
 export default {
   name: 'PlaylistTitle',
   components: {},
-  data() {
+  props: {
+    info: {
+      type: [Array, Object],
+      default: function () {
+        return []
+      },
+      required: true
+    }
+  },
+  data () {
     return {
     }
   },

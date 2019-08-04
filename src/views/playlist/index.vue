@@ -2,29 +2,38 @@
  * @Author: rsl
  * @Date: 2019-07-25
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-02
+ * @LastEditTime: 2019-08-04
  * @Description: 歌单页
  -->
 <template>
   <div>
     <div class="list">
       <div class="list-introduce_wrap">
+        <div class="list-introduce_cover" :style="{ backgroundImage: 'url(' + resData.coverImgUrl + ')'}"></div>
         <div class="list-nav">
           <list-nav></list-nav>
         </div>
         <div class="list-introduce_content">
-          <list-introduction></list-introduction>
+          <list-introduction :info="resData"></list-introduction>
         </div>
       </div>
       <div class="list-list">
-        <list-music-card v-for="(item, index) in 8" :index="index + 1" :key="index"></list-music-card>
+        <list-music-card
+          v-for="(item, index) in resData.tracks"
+          :key="index"
+          :index="index + 1"
+          :music-info="item"
+        >
+        </list-music-card>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import { ListIntroduction, ListMusicCard, ListNav } from './components'
+import BScroll from '@better-scroll/core'
 
 export default {
   name: 'Playlist',
@@ -33,22 +42,54 @@ export default {
     ListMusicCard,
     ListNav
   },
-  data() {
+  created () {
+    // 获取用户歌单
+    this.getPlayList();
+    // 开启loading
+    this.openLoading();
+  },
+  mounted () {
+    let bs = new BScroll('.list')
+  },
+  data () {
     return {
+      resData: []
     }
   },
   methods: {
-
+    ...mapActions({
+      getPlayListInfo: 'playlist/getPlayListInfo',
+      // 开启loading
+      openLoading: 'loading/openLoading',
+      // 关闭loading
+      closeLoading: 'loading/closeLoading',
+    }),
+    /**
+     * @description: 获取用户歌单
+     * @param {type}
+     * @return:
+     */
+    async getPlayList () {
+      let params = { id: 2746618427 };
+      // 获取用户信息
+      try {
+        const data = await this.getPlayListInfo(params);
+        this.resData = data.data.playlist;
+        console.log(data.data);
+        // 关闭loading
+        this.closeLoading();
+      } catch (e) {
+        // 关闭loading
+        this.closeLoading();
+      }
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .list {
-  position: absolute;
   width: 100%;
-  top: 0;
-  bottom: 0;
   display: flex;
   flex-direction: column;
 
@@ -58,6 +99,19 @@ export default {
       height: 70vw;
       display: flex;
       flex-direction: column;
+      position: relative;
+    }
+    &_cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 55vw;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      filter: blur(8vw);
     }
 
     &_content {
