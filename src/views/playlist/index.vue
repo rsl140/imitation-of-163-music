@@ -2,14 +2,14 @@
  * @Author: rsl
  * @Date: 2019-07-25
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-04
+ * @LastEditTime: 2019-08-05
  * @Description: 歌单页
  -->
 <template>
   <div>
     <div class="list">
       <div class="list-introduce_wrap">
-        <div class="list-introduce_cover" :style="{ backgroundImage: 'url(' + resData.coverImgUrl + ')'}"></div>
+        <!-- <div class="list-introduce_cover" :style="{ backgroundImage: 'url(' + resData.coverImgUrl + ')'}"></div> -->
         <div class="list-nav">
           <list-nav></list-nav>
         </div>
@@ -23,6 +23,7 @@
           :key="index"
           :index="index + 1"
           :music-info="item"
+          @playMusic="playMusic"
         >
         </list-music-card>
       </div>
@@ -49,7 +50,10 @@ export default {
     this.openLoading();
   },
   mounted () {
-    let bs = new BScroll('.list')
+    let bs = new BScroll('.list', {
+      scrollY: true,
+      click: true
+    })
   },
   data () {
     return {
@@ -63,6 +67,7 @@ export default {
       openLoading: 'loading/openLoading',
       // 关闭loading
       closeLoading: 'loading/closeLoading',
+      setMusicId: 'playlist/setMusicId'
     }),
     /**
      * @description: 获取用户歌单
@@ -82,6 +87,15 @@ export default {
         // 关闭loading
         this.closeLoading();
       }
+    },
+    /**
+     * @description: 播放音乐
+     * @param {type}
+     * @return:
+     */
+    playMusic (id) {
+      this.setMusicId(id)
+      this.$router.push({ name: 'Play' })
     }
   }
 }

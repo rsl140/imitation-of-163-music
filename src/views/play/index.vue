@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-07-25
  * @LastEditors: rsl
- * @LastEditTime: 2019-07-31
+ * @LastEditTime: 2019-08-04
  * @Description: 播放器页面
  -->
 <template>
@@ -52,10 +52,20 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'Play',
   components: {},
-  data() {
+  computed: {
+    ...mapState({
+      musicId: state => state.playlist.musicId
+    }),
+  },
+  mounted () {
+    console.log(this.musicId);
+  },
+  data () {
     return {
       pleayedLegth: '10%'
     }

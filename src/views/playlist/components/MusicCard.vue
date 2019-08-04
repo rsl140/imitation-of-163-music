@@ -2,11 +2,11 @@
  * @Author: rsl
  * @Date: 2019-07-31
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-04
+ * @LastEditTime: 2019-08-05
  * @Description: 歌单页音乐列表卡片
  -->
 <template>
-  <div class="mcard">
+  <div class="mcard" @click="handleClick">
     <div class="mcard-wrap">
       <div class="mcard-index" v-if="index">
         {{index}}
@@ -57,7 +57,9 @@ export default {
     }
   },
   methods: {
-
+    handleClick () {
+      this.$emit('playMusic', this.musicInfo.id)
+    }
   }
 }
 </script>
@@ -66,6 +68,7 @@ export default {
 .mcard {
   height: 1.6rem;
   padding: .1rem .3rem;
+  z-index: 4;
 
   &-wrap {
     display: flex;
