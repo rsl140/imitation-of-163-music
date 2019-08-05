@@ -9,7 +9,7 @@
   <div>
     <div class="list">
       <div class="list-introduce_wrap">
-        <!-- <div class="list-introduce_cover" :style="{ backgroundImage: 'url(' + resData.coverImgUrl + ')'}"></div> -->
+        <div class="list-introduce_cover" :style="{ backgroundImage: 'url(' + resData.coverImgUrl + ')'}"></div>
         <div class="list-nav">
           <list-nav></list-nav>
         </div>

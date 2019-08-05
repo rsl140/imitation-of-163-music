@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-08-03
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-04
+ * @LastEditTime: 2019-08-05
  * @Description: 播放
  */
 import playing from '../../api/playing'
@@ -13,7 +13,7 @@ const state = {
 };
 
 const mutations = {
-  [types.SET_PLAY_LIST_INFO](state, data) {
+  [types.SET_MUSIC_URL](state, data) {
     state.musicUrl = data
   }
 };

@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-07-25
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-04
+ * @LastEditTime: 2019-08-05
  * @Description: 播放器页面
  -->
 <template>
@@ -20,39 +20,53 @@
       </div>
     </div>
     <div class="play-content">
-      <img src="../../assets/img/rod.png" class="play-cd_rod">
-      <div class="play-cd_wrap">
+      <img src="../../assets/img/rod.png" class="play-cd_rod" :style="isPlay ? {transform: 'rotate(0deg)'} : {}">
+      <div class="play-cd_wrap" :style="isPlay ? {animationPlayState: 'running'} : {}">
         <img class="play-cd_cover" src="../../assets/img/cd.png">
-        <!-- <img class="play-cd_defaultimg" src="../../assets/img/default-cover.jpg"> -->
         <div class="play-cd_defaultimg"></div>
       </div>
     </div>
     <div class="play-footer">
       <div class="play-footer_box play-progress ">
-        <div class="play-timing">00:00</div>
+        <div class="play-timing">{{currentTime | fomatTime}}</div>
         <div class="play-progress_wrap">
           <div class="play-progress_played" :style="{ width: pleayedLegth }"></div>
           <div class="play-progress_point" :style="{ left: pleayedLegth }"></div>
         </div>
-        <div class="play-time">00:00</div>
+        <div class="play-time">{{duration | fomatTime}}</div>
       </div>
       <div class="play-footer_box">
         <div class="iconfont play-previous">
           &#xe7ec;
         </div>
-        <div class="iconfont play-btn">
-          &#xe781;
+        <div class="iconfont play-btn" @click="play">
+          {{isPlay ? '&#xe783;' : '&#xe781;'}}
         </div>
         <div class="iconfont play-next">
           &#xe7eb;
         </div>
       </div>
     </div>
+    <!-- <audio
+      ref="audio"
+      @ended="end"
+      autoplay
+      @canplay="ready"
+      @error="error"
+      @timeupdate="updateTime"
+    > -->
+    <audio
+      ref="audio"
+      autoplay
+      @timeupdate="updateTime"
+    >
+    </audio>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Play',
@@ -63,14 +77,78 @@ export default {
     }),
   },
   mounted () {
-    console.log(this.musicId);
+    this.getMusucInfo()
+  },
+  filters: {
+    fomatTime: interval => {
+      interval = interval | 0
+      let minute = interval / 60 | 0
+      let second = interval % 60
+      if (second < 10) {
+        second = '0' + second
+      }
+      return minute + ':' + second
+    }
   },
   data () {
     return {
-      pleayedLegth: '10%'
+      pleayedLegth: '10%',
+      resData: [],
+      isPlay: false,
+      duration: 0,
+      currentTime: 0
     }
   },
   methods: {
+    ...mapActions({
+      getMusicUrl: 'playing/getMusicUrl',
+      // 开启loading
+      openLoading: 'loading/openLoading',
+      // 关闭loading
+      closeLoading: 'loading/closeLoading'
+    }),
+    async getMusucInfo () {
+      let params = { id: this.musicId }
+      // 获取用户信息
+      try {
+        const data = await this.getMusicUrl(params)
+        this.resData = data.data.data[0]
+        this.$refs.audio.src = data.data.data[0].url
+        this.$refs.audio.play()
+        const _this = this
+        let stop = setInterval(() => {
+          _this.duration = _this.$refs.audio.duration
+          if (_this.duration) {
+            clearInterval(stop)
+          }
+        }, 150)
+        this.isPlay = true
+        // 关闭loading
+        this.closeLoading()
+      } catch (e) {
+        // 关闭loading
+        this.closeLoading()
+      }
+    },
+    /**
+     * @description: 播放按钮
+     * @param {type}
+     * @return:
+     */
+    play () {
+      if (this.isPlay) {
+        this.$refs.audio.pause()
+      } else {
+        this.$refs.audio.play()
+      }
+      this.isPlay = !this.isPlay
+    },
+    updateTime (e) {
+      this.currentTime = e.target.currentTime
+      if (this.duration) {
+        this.pleayedLegth = this.currentTime / this.duration * 100 + '%'
+      }
+    },
     /**
      * @description: 返回上一级
      * @param {type}
