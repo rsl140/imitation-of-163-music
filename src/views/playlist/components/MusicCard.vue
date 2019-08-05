@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     handleClick () {
-      this.$emit('playMusic', this.musicInfo.id)
+      this.$emit('playMusic', this.musicInfo, this.index - 1)
     }
   }
 }

@@ -10,15 +10,17 @@ import * as types from '../mutation-types'
 
 const state = {
   playListInfo: [],
-  musicId: 0
+  musicInfo: [],
+  musicIndex: -1
 };
 
 const mutations = {
   [types.SET_PLAY_LIST_INFO] (state, data) {
     state.playListInfo = data
   },
-  [types.SET_MUSIC_ID] (state, data) {
-    state.musicId = data
+  [types.SET_MUSIC_INFO] (state, data) {
+    state.musicInfo = data.musicInfo
+    state.musicIndex = data.index
   }
 };
 
@@ -28,8 +30,8 @@ const actions = {
     commit(types.SET_PLAY_LIST_INFO, ret.data.playlist);
     return ret;
   },
-  setMusicId ({state, commit}, params) {
-    commit(types.SET_MUSIC_ID, params);
+  setMusicInfo ({state, commit}, params) {
+    commit(types.SET_MUSIC_INFO, params);
   }
 };
 

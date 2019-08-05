@@ -67,7 +67,7 @@ export default {
       openLoading: 'loading/openLoading',
       // 关闭loading
       closeLoading: 'loading/closeLoading',
-      setMusicId: 'playlist/setMusicId'
+      setMusicInfo: 'playlist/setMusicInfo'
     }),
     /**
      * @description: 获取用户歌单
@@ -90,11 +90,12 @@ export default {
     },
     /**
      * @description: 播放音乐
-     * @param {type}
+     * @param {Array} 音乐详情
+     * @param {Number} 下标
      * @return:
      */
-    playMusic (id) {
-      this.setMusicId(id)
+    playMusic (musicInfo, index) {
+      this.setMusicInfo({ musicInfo, index })
       this.$router.push({ name: 'Play' })
     }
   }

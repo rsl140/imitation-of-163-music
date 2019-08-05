@@ -7,7 +7,7 @@
  -->
 <template>
   <div class="play">
-    <div class="play-bg_cover" style="background-image: url('http://p2.music.126.net/fkqFqMaEt0CzxYS-0NpCog==/18587244069235039.jpg');"></div>
+    <div class="play-bg_cover" :style="{backgroundImage: 'url(' + musicInfo.al.picUrl + ')'}"></div>
     <div class="play-header">
       <div
       class="iconfont play-header_arrow"
@@ -15,15 +15,24 @@
       >
       &#xe7ec;</div>
       <div class="play-header_title">
-        <div class="play-header_name">光年之外</div>
-        <div class="play-header_singer">G.E.M.邓紫棋</div>
+        <div class="play-header_name">{{musicInfo.name}}</div>
+        <div class="play-header_singer">
+          <span v-for="(item, index) in musicInfo.ar" :key="item.id">
+            <template v-if="musicInfo.ar.length === index + 1">
+              {{item.name}}
+            </template>
+            <template v-else>
+              {{item.name}}/
+            </template>
+          </span>
+        </div>
       </div>
     </div>
     <div class="play-content">
       <img src="../../assets/img/rod.png" class="play-cd_rod" :style="isPlay ? {transform: 'rotate(0deg)'} : {}">
       <div class="play-cd_wrap" :style="isPlay ? {animationPlayState: 'running'} : {}">
         <img class="play-cd_cover" src="../../assets/img/cd.png">
-        <div class="play-cd_defaultimg"></div>
+        <div class="play-cd_defaultimg" :style="{backgroundImage: 'url(' + musicInfo.al.picUrl + ')'}"></div>
       </div>
     </div>
     <div class="play-footer">
@@ -36,13 +45,13 @@
         <div class="play-time">{{duration | fomatTime}}</div>
       </div>
       <div class="play-footer_box">
-        <div class="iconfont play-previous">
+        <div class="iconfont play-previous" @click="previous">
           &#xe7ec;
         </div>
         <div class="iconfont play-btn" @click="play">
           {{isPlay ? '&#xe783;' : '&#xe781;'}}
         </div>
-        <div class="iconfont play-next">
+        <div class="iconfont play-next" @click="next">
           &#xe7eb;
         </div>
       </div>
@@ -73,7 +82,9 @@ export default {
   components: {},
   computed: {
     ...mapState({
-      musicId: state => state.playlist.musicId
+      musicInfo: state => state.playlist.musicInfo,
+      musicIndex: state => state.playlist.musicIndex,
+      playListInfo: state => state.playlist.playListInfo
     }),
   },
   mounted () {
@@ -108,7 +119,8 @@ export default {
       closeLoading: 'loading/closeLoading'
     }),
     async getMusucInfo () {
-      let params = { id: this.musicId }
+      console.log(this.musicInfo)
+      let params = { id: this.musicInfo.id }
       // 获取用户信息
       try {
         const data = await this.getMusicUrl(params)
@@ -149,6 +161,18 @@ export default {
         this.pleayedLegth = this.currentTime / this.duration * 100 + '%'
       }
     },
+    /**
+     * @description: 上一首歌
+     * @param {type}
+     * @return:
+     */
+    next () {},
+    /**
+     * @description: 下一首歌
+     * @param {type}
+     * @return:
+     */
+    previous () {},
     /**
      * @description: 返回上一级
      * @param {type}
