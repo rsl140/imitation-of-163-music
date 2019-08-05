@@ -45,9 +45,9 @@ export default {
   },
   created () {
     // 获取用户歌单
-    this.getPlayList();
+    this.getPlayList()
     // 开启loading
-    this.openLoading();
+    this.openLoading()
   },
   mounted () {
     let bs = new BScroll('.list', {
@@ -78,14 +78,13 @@ export default {
       let params = { id: 2746618427 };
       // 获取用户信息
       try {
-        const data = await this.getPlayListInfo(params);
-        this.resData = data.data.playlist;
-        console.log(data.data);
+        const data = await this.getPlayListInfo(params)
+        this.resData = data.data.playlist
         // 关闭loading
-        this.closeLoading();
+        this.closeLoading()
       } catch (e) {
         // 关闭loading
-        this.closeLoading();
+        this.closeLoading()
       }
     },
     /**

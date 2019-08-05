@@ -116,10 +116,10 @@ export default {
       // 开启loading
       openLoading: 'loading/openLoading',
       // 关闭loading
-      closeLoading: 'loading/closeLoading'
+      closeLoading: 'loading/closeLoading',
+      setMusicInfo: 'playlist/setMusicInfo'
     }),
     async getMusucInfo () {
-      console.log(this.musicInfo)
       let params = { id: this.musicInfo.id }
       // 获取用户信息
       try {
@@ -128,6 +128,7 @@ export default {
         this.$refs.audio.src = data.data.data[0].url
         this.$refs.audio.play()
         const _this = this
+        // 计算歌曲总时长
         let stop = setInterval(() => {
           _this.duration = _this.$refs.audio.duration
           if (_this.duration) {
@@ -162,17 +163,30 @@ export default {
       }
     },
     /**
-     * @description: 上一首歌
-     * @param {type}
-     * @return:
-     */
-    next () {},
-    /**
      * @description: 下一首歌
      * @param {type}
      * @return:
      */
-    previous () {},
+    next () {
+
+      if (this.musicIndex + 1 !== this.playListInfo.tracks.length) {
+        const index = this.musicIndex + 1
+        const musicInfo = this.playListInfo.tracks[index]
+        this.setMusicInfo({ musicInfo, index })
+      }
+    },
+    /**
+     * @description: 上一首歌
+     * @param {type}
+     * @return:
+     */
+    previous () {
+      if (this.musicIndex !== 0) {
+        const index = this.musicIndex - 1
+        const musicInfo = this.playListInfo.tracks[index]
+        this.setMusicInfo({ musicInfo, index })
+      }
+    },
     /**
      * @description: 返回上一级
      * @param {type}
