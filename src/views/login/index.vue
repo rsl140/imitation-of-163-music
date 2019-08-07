@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-07-26
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-05
+ * @LastEditTime: 2019-08-07
  * @Description: 登录页
  -->
 <template>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'Login',
@@ -36,12 +36,12 @@ export default {
         phone: 0,
         password: ''
       }
-    };
+    }
   },
   computed: {
     ...mapState({
-      userInfo: state => state.example.userInfo,
-    }),
+      userInfo: state => state.example.userInfo
+    })
   },
   methods: {
     ...mapActions({
@@ -50,7 +50,7 @@ export default {
       // 开启loading
       openLoading: 'loading/openLoading',
       // 关闭loading
-      closeLoading: 'loading/closeLoading',
+      closeLoading: 'loading/closeLoading'
     }),
 
     /**
@@ -58,7 +58,7 @@ export default {
      * @param {type}
      * @return:
      */
-    async loginIn() {
+    async loginIn () {
       this.openLoading()
       // 用户登录
       try {
@@ -72,8 +72,8 @@ export default {
         this.closeLoading()
       }
     }
-  },
-};
+  }
+}
 </script>
 
 <style scoped lang="scss">

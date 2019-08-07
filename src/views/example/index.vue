@@ -16,26 +16,26 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex'
 
 export default {
   components: {},
-  data() {
+  data () {
     return {
-      resData: null,
-    };
+      resData: null
+    }
   },
   computed: {
     ...mapState({
-      userInfo: state => state.example.userInfo,
-    }),
+      userInfo: state => state.example.userInfo
+    })
   },
-  created() {
+  created () {
     // 获取医生列表
-    this.fetchData();
+    this.fetchData()
 
     // 开启loading
-    this.openLoading();
+    this.openLoading()
   },
   methods: {
     ...mapActions({
@@ -44,26 +44,26 @@ export default {
       // 开启loading
       openLoading: 'loading/openLoading',
       // 关闭loading
-      closeLoading: 'loading/closeLoading',
+      closeLoading: 'loading/closeLoading'
     }),
 
     /**
      * 获取用户信息
      * @returns {Promise<void>}
      */
-    async fetchData() {
+    async fetchData () {
       // 用户信息，填写自己的网易云音乐账号
-      let params = { phone: 手机号, password: '111' };
+      const params = { phone: '手机号', password: '密码' }
       // 获取用户信息
       try {
-        const data = await this.getUserInfo(params);
-        this.resData = data.data.account;
-        console.log(data);
+        const data = await this.getUserInfo(params)
+        this.resData = data.data.account
+        console.log(data)
         // 关闭loading
-        this.closeLoading();
+        this.closeLoading()
       } catch (e) {
         // 关闭loading
-        this.closeLoading();
+        this.closeLoading()
       }
     },
 
@@ -71,11 +71,11 @@ export default {
      * 路由跳转方法
      * @param link
      */
-    routeLink(link) {
-      this.$router.push({ path: link });
+    routeLink (link) {
+      this.$router.push({ path: link })
     }
-  },
-};
+  }
+}
 </script>
 
 <style scoped lang="scss">
