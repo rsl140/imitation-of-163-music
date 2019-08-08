@@ -12,27 +12,34 @@ npm run dev
 
 ```
 
-### 本地接口服务环境搭建
-接口地址：https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=neteasecloudmusicapi
-下载：git clone https://github.com/Binaryify/NeteaseCloudMusicApi.git 或github直接下载代码包
-安装：进入目录，npm install
-启动服务：node app.js
-
-### 项目简单截图
-在screenshot目录下
-
-### 手机端适配方案
-采用flexible rem适配方案
-写px自动转rem
-
 ### 说明
+加入了eslint,reset.css,border.css,iconfont
+更改`webpack.base.conf.js`内
+```
+resolve: {
+  extensions: ['.js', '.vue', '.json'],
+  alias: {
+    'vue$': 'vue/dist/vue.esm.js',
+    '@': resolve('src'),
+  }
+},
+为:
+resolve: {
+  extensions: ['.js', '.vue', '.json'],
+  alias: {
+    'vue$': 'vue/dist/vue.esm.js',
+    '@': resolve('src'),
+    'styles': resolve('src/assets/styles'),
+  }
+},
+```
 
 #### src架构
 
 ```
 ├── App.vue
 ├── api
-│   ├── doctor.js
+│   ├── example.js
 │   └── fetch.js
 ├── assets
 │   └── logo.png
@@ -48,14 +55,15 @@ npm run dev
 │   ├── modules
 │   └── mutation-types.js
 └── views
-    └── doctor
+    └── example
+        ├── index.js
 ```
 
 
 
 处理数据页面这2大块，把数据和页面分离，在vuex里面做请求数据，页面只需要做调用数据。
 
-请求接口这块再细分，接口和请求接口分开，我用了最新的async/await函数做数据请求
+请求接口这块再细分，接口和请求接口分开，用了最新的async/await函数做数据请求
 
 #### api文件夹 主要放后端提供的接口，如
 
@@ -65,7 +73,7 @@ import fetch from './fetch';
 
 export default {
   // 获取用户登陆信息
-  list(params) {
+  list (params) {
     return fetch.get('/example/index', params)
   },
 }
@@ -197,7 +205,7 @@ const state = {
 };
 
 const mutations = {
-  // 设置医生列表
+  // 设置用户列表
   [types.SET_USER_INFO](state, data) {
     state.userInfo = data
   },
@@ -206,7 +214,7 @@ const mutations = {
 const actions = {
 
   /**
-   * 获取医生顾问列表
+   * 获取用户顾问列表
    * @param state
    * @param commit
    * @param params
@@ -271,7 +279,7 @@ export default {
     }),
   },
   created() {
-    // 获取医生列表
+    // 获取用户列表
     this.fetchData();
 
     // 开启loading
@@ -279,7 +287,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      // 获取医生列表
+      // 获取用户列表
       getUserInfo: 'example/getUserInfo',
       // 开启loading
       openLoading: 'loading/openLoading',
