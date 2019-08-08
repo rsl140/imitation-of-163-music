@@ -64,6 +64,7 @@ export default {
       try {
         const data = await this.getUserInfo(this.login)
         this.resData = data.data.account
+        alert('click')
         this.$router.push({ name: 'Playlist' })
         // 关闭loading
         this.closeLoading()
