@@ -7,31 +7,31 @@
 <script>
   export default {
     props: ['text'],
-    data() {
+    data () {
       return {
         // 是否置顶
         isFixed: false
       }
     },
     computed: {
-      loadingClass() {
+      loadingClass () {
         return this.isFixed ? 'loading-wrap loading-wrap-fixed-top' : 'loading-wrap'
       }
 
     },
-    mounted() {
+    mounted () {
       // 监听滚动条
       window.addEventListener('scroll', this.handleScroll)
     },
-    destroyed() {
+    destroyed () {
       // 移除滚动条
       window.removeEventListener('scroll', this.handleScroll)
     },
     methods: {
       // 处理滚动条
-      handleScroll() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        let offsetTop = document.querySelector('#nav').offsetTop;
+      handleScroll () {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        const offsetTop = document.querySelector('#nav').offsetTop
         this.isFixed = !!(scrollTop > offsetTop)
       }
     }

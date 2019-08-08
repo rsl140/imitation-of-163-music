@@ -5,12 +5,12 @@ Vue.use(Router)
 
 export default new Router({
   mode: 'history',
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior (to, from, savedPosition) {
     // 兼容
     if (savedPosition) {
       return savedPosition
     } else {
-      return {x: 0, y: 0}
+      return { x: 0, y: 0 }
     }
   },
   routes: [
@@ -23,24 +23,24 @@ export default new Router({
       // 登录页
       path: '/login',
       name: 'Login',
-      component(resolve) {
-        require(['../views//login/index.vue'], resolve);
+      component (resolve) {
+        require(['../views//login/index.vue'], resolve)
       }
     },
     {
       // 歌单页
       path: '/play/index',
       name: 'Play',
-      component(resolve) {
-        require(['../views/play/index.vue'], resolve);
+      component (resolve) {
+        require(['../views/play/index.vue'], resolve)
       }
     },
     {
       // 播放器页面
       path: '/playlist/index',
       name: 'Playlist',
-      component(resolve) {
-        require(['../views/playlist/index.vue'], resolve);
+      component (resolve) {
+        require(['../views/playlist/index.vue'], resolve)
       }
     }
   ]

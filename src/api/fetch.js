@@ -20,19 +20,16 @@ Util.ajax.interceptors.request.use(config => {
   // 获取token
   // config.headers.common['Authorization'] = 'Bearer ' + Vue.ls.get("web-token");
   return config
-
 }, error => {
   return Promise.reject(error)
-
-});
+})
 
 Util.ajax.interceptors.response.use(response => {
-
   /**
    * 在这里做loading 关闭
    */
 
-    // 如果后端有新的token则重新缓存
+  // 如果后端有新的token则重新缓存
   // let newToken = response.headers['new-token'];
 
   // if (newToken) {
@@ -41,45 +38,45 @@ Util.ajax.interceptors.response.use(response => {
   // 关闭loading
   closeLoading()
 
-  return response;
+  return response
 
 }, error => {
-  let res = error.response;
-  let {code} = res.data;
+  const res = error.response
+  let { code } = res.data
 
   switch (code) {
     case 401:
       // 处理401错误
-      console.log("权限不足");
-      Vue.ls.remove('BOBLOG_ADMIN_TOKEN');
-      window.location.href = '/login';
+      console.log('权限不足')
+      Vue.ls.remove('BOBLOG_ADMIN_TOKEN')
+      window.location.href = '/login'
       break;
 
     case 404:
-      console.log("404不存在");
+      console.log('404不存在')
       break;
 
     case 412:
       console.log(res.data.message)
-      break;
+      break
 
     case 422:
-      let errors = "";
+      let errors = '';
       if (res.data.errors) {
-        let arr = [];
-        for (let key in res.data.errors) {
+        const arr = []
+        for (const key in res.data.errors) {
           res.data.errors[key].forEach((item) => {
             arr.push(item)
           })
         }
-        errors = arr.length > 0 ? arr.join('，') : arr;
+        errors = arr.length > 0 ? arr.join('，') : arr
       }
       console.log(errors)
-      break;
+      break
 
     case 500:
       console.log(res.data.message)
-      break;
+      break
 
     default:
       console.log(res.data.message)
@@ -88,12 +85,11 @@ Util.ajax.interceptors.response.use(response => {
   // 关闭loading
   closeLoading()
   return Promise.reject(res)
-
-});
+})
 
 export default {
-  post(url, params = {}) {
-    let {isLoading = true} = params;
+  post (url, params = {}) {
+    const { isLoading = true } = params
     return Util.ajax({
       method: 'post',
       url: url,
@@ -106,18 +102,18 @@ export default {
     })
   },
 
-  get(url, params = {}) {
-    let {isLoading = true} = params;
+  get (url, params = {}) {
+    const { isLoading = true } = params
     return Util.ajax({
       method: 'get',
       url: url,
       params,
-      isLoading,
+      isLoading
     })
   },
 
-  delete(url, params = {}) {
-    let {isLoading = true} = params;
+  delete (url, params = {}) {
+    const { isLoading = true } = params
     return Util.ajax({
       method: 'delete',
       url: url,
@@ -126,8 +122,8 @@ export default {
     })
   },
 
-  put(url, params = {}) {
-    let {isLoading = true} = params;
+  put (url, params = {}) {
+    const { isLoading = true } = params
     return Util.ajax({
       method: 'put',
       url: url,
@@ -144,7 +140,7 @@ export default {
 /**
  * 关闭loading
  */
-function closeLoading() {
+function closeLoading () {
   // 延迟100毫秒关闭
   setTimeout(() => {
     // 关闭loading
