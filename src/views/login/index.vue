@@ -40,13 +40,13 @@ export default {
   },
   computed: {
     ...mapState({
-      userInfo: state => state.example.userInfo
+      userInfo: state => state.login.userInfo
     })
   },
   methods: {
     ...mapActions({
       // 获取用户列表
-      getUserInfo: 'example/getUserInfo',
+      getUserInfo: 'login/getUserInfo',
       // 开启loading
       openLoading: 'loading/openLoading',
       // 关闭loading
