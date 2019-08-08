@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-08-02
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-04
+ * @LastEditTime: 2019-08-08
  * @Description: 歌单列表头（播放全部）
  -->
 <template>

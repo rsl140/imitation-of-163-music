@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-08-01
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-04
+ * @LastEditTime: 2019-08-08
  * @Description: 歌单页音乐列表头部歌单介绍信息
  -->
 <template>
@@ -47,14 +47,14 @@ export default {
   },
   filters: {
     filtersDescription: function (description) {
-        if (description.length > 40) {
-          return description.slice(0, 38) + '...'
-        } else {
-          return description
-        }
+      if (description.length > 40) {
+        return description.slice(0, 38) + '...'
+      } else {
+        return description
+      }
     }
   },
-  data() {
+  data () {
     return {
     }
   },

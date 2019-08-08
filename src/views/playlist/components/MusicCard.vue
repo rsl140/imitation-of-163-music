@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-07-31
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-05
+ * @LastEditTime: 2019-08-08
  * @Description: 歌单页音乐列表卡片
  -->
 <template>
@@ -52,7 +52,7 @@ export default {
       required: true
     }
   },
-  data() {
+  data () {
     return {
     }
   },

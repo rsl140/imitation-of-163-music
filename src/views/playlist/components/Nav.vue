@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-08-01
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-04
+ * @LastEditTime: 2019-08-08
  * @Description: 歌单页音乐列表导航
  -->
 <template>
@@ -26,7 +26,7 @@
 export default {
   name: 'PlaylistNav',
   components: {},
-  data() {
+  data () {
     return {
     }
   },

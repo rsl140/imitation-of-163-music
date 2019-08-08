@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-07-25
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-05
+ * @LastEditTime: 2019-08-08
  * @Description: 播放器页面
  -->
 <template>
@@ -74,8 +74,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { mapActions } from 'vuex';
+import { mapState } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Play',
@@ -85,7 +85,7 @@ export default {
       musicInfo: state => state.playlist.musicInfo,
       musicIndex: state => state.playlist.musicIndex,
       playListInfo: state => state.playlist.playListInfo
-    }),
+    })
   },
   mounted () {
     this.getMusucInfo()
@@ -93,7 +93,7 @@ export default {
   filters: {
     fomatTime: interval => {
       interval = interval | 0
-      let minute = interval / 60 | 0
+      const minute = interval / 60 | 0
       let second = interval % 60
       if (second < 10) {
         second = '0' + second
@@ -120,7 +120,7 @@ export default {
       setMusicInfo: 'playlist/setMusicInfo'
     }),
     async getMusucInfo () {
-      let params = { id: this.musicInfo.id }
+      const params = { id: this.musicInfo.id }
       // 获取用户信息
       try {
         const data = await this.getMusicUrl(params)
@@ -129,7 +129,7 @@ export default {
         this.$refs.audio.play()
         const _this = this
         // 计算歌曲总时长
-        let stop = setInterval(() => {
+        const stop = setInterval(() => {
           _this.duration = _this.$refs.audio.duration
           if (_this.duration) {
             clearInterval(stop)
@@ -168,7 +168,6 @@ export default {
      * @return:
      */
     next () {
-
       if (this.musicIndex + 1 !== this.playListInfo.tracks.length) {
         const index = this.musicIndex + 1
         const musicInfo = this.playListInfo.tracks[index]

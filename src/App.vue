@@ -11,9 +11,9 @@
 
 <script>
   import loadingView from './components/loading'
-  import {mapGetters} from 'vuex';
+  import { mapGetters } from 'vuex'
 
-  export default {
+export default {
     components: {
       loadingView
     },
@@ -21,8 +21,8 @@
       ...mapGetters('loading', [
         'isLoading',
         'loadingText'
-      ]),
-    },
+      ])
+    }
   }
 </script>
 

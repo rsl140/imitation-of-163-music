@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-07-25
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-05
+ * @LastEditTime: 2019-08-08
  * @Description: 歌单页
  -->
 <template>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 import { ListIntroduction, ListMusicCard, ListNav } from './components'
 import BScroll from '@better-scroll/core'
 
@@ -50,7 +50,7 @@ export default {
     this.openLoading()
   },
   mounted () {
-    let bs = new BScroll('.list', {
+    const bs = new BScroll('.list', {
       scrollY: true,
       click: true
     })
@@ -75,7 +75,7 @@ export default {
      * @return:
      */
     async getPlayList () {
-      let params = { id: 2746618427 };
+      const params = { id: 2746618427 }
       // 获取用户信息
       try {
         const data = await this.getPlayListInfo(params)
