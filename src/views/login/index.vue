@@ -2,21 +2,38 @@
  * @Author: rsl
  * @Date: 2019-07-26
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-16 23:04:39
+ * @LastEditTime: 2019-09-16 23:13:35
  * @Description: 登录页
  -->
 <template>
   <div class="login">
      <div class="login-box">
-       <div class="login-input">
+       <!-- <div class="login-input">
         <label>手机号：</label>
         <input type="text" v-model="login.phone" />
        </div>
        <div class="login-input">
         <label>密码：</label>
         <input type="password" v-model="login.password" @keypress.enter="loginIn" />
-       </div>
+       </div> -->
+      <van-cell-group>
+        <van-field
+          v-model="login.phone"
+          required
+          clearable
+          label="手机号"
+          right-icon="question-o"
+          placeholder="请输入手机号"
+        />
 
+        <van-field
+          v-model="login.password"
+          type="password"
+          label="密码"
+          placeholder="请输入密码"
+          required
+        />
+      </van-cell-group>
      </div>
      <div class="login-box">
       <van-button type="primary" plain hairline @click="loginIn">登录</van-button>

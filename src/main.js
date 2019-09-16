@@ -5,7 +5,7 @@ import router from './router'
 import fastClick from 'fastclick'
 import store from './store'
 import VueLocalStorage from 'vue-ls'
-import 'lib-flexible/flexible'
+import 'amfe-flexible/index.js'
 import './assets/styles/border.css'
 import './assets/styles/reset.css'
 import './assets/styles/iconfont.css'
@@ -14,8 +14,8 @@ Vue.config.productionTip = false
 fastClick.attach(document.body)
 Vue.use(VueLocalStorage)
 // vant components
-import { Button } from 'vant'
-Vue.use(Button)
+import { Button, Field, Cell, CellGroup } from 'vant'
+Vue.use(Button).use(Field).use(Cell).use(CellGroup)
 
 router.beforeEach((to, from, next) => {
   next()
