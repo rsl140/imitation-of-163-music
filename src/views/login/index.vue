@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-07-26
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-17 00:28:06
+ * @LastEditTime: 2019-09-17 00:36:21
  * @Description: 登录页
  -->
 <template>
@@ -112,6 +112,7 @@ export default {
 
   &-cell {
     margin-bottom: .625rem;
+    width: 70vw;
   }
 
   &-btn {
