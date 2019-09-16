@@ -7,25 +7,27 @@
  -->
 <template>
   <div>
-    <div class="list">
-      <div class="list-introduce_wrap">
-        <div class="list-introduce_cover" :style="{ backgroundImage: 'url(' + resData.coverImgUrl + ')'}"></div>
-        <div class="list-nav">
-          <list-nav></list-nav>
+    <div class="list" ref="wrapper">
+      <div>
+        <div class="list-introduce_wrap">
+          <div class="list-introduce_cover" :style="{ backgroundImage: 'url(' + resData.coverImgUrl + ')'}"></div>
+          <div class="list-nav">
+            <list-nav></list-nav>
+          </div>
+          <div class="list-introduce_content">
+            <list-introduction :info="resData"></list-introduction>
+          </div>
         </div>
-        <div class="list-introduce_content">
-          <list-introduction :info="resData"></list-introduction>
+        <div class="list-list">
+          <list-music-card
+            v-for="(item, index) in resData.tracks"
+            :key="index"
+            :index="index + 1"
+            :music-info="item"
+            @playMusic="playMusic"
+          >
+          </list-music-card>
         </div>
-      </div>
-      <div class="list-list">
-        <list-music-card
-          v-for="(item, index) in resData.tracks"
-          :key="index"
-          :index="index + 1"
-          :music-info="item"
-          @playMusic="playMusic"
-        >
-        </list-music-card>
       </div>
     </div>
   </div>
@@ -34,7 +36,7 @@
 <script>
 import { mapActions } from 'vuex'
 import { ListIntroduction, ListMusicCard, ListNav } from './components'
-import BScroll from '@better-scroll/core'
+// import Bscroll from 'better-scroll'
 
 export default {
   name: 'Playlist',
@@ -49,12 +51,9 @@ export default {
     // 开启loading
     this.openLoading()
   },
-  mounted () {
-    const bs = new BScroll('.list', {
-      scrollY: true,
-      click: true
-    })
-  },
+  // mounted () {
+  //   this.scroll = new Bscroll(this.$refs.wrapper)
+  // },
   data () {
     return {
       resData: []

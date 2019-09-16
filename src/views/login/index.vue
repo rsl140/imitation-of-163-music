@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-07-26
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-08
+ * @LastEditTime: 2019-09-16 23:04:39
  * @Description: 登录页
  -->
 <template>
@@ -19,7 +19,7 @@
 
      </div>
      <div class="login-box">
-      <button class="login-btn" @click="loginIn">登录</button>
+      <van-button type="primary" plain hairline @click="loginIn">登录</van-button>
      </div>
   </div>
 </template>

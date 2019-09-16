@@ -13,6 +13,9 @@ import './assets/styles/iconfont.css'
 Vue.config.productionTip = false
 fastClick.attach(document.body)
 Vue.use(VueLocalStorage)
+// vant components
+import { Button } from 'vant'
+Vue.use(Button)
 
 router.beforeEach((to, from, next) => {
   next()
