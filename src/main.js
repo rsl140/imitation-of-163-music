@@ -14,8 +14,8 @@ Vue.config.productionTip = false
 fastClick.attach(document.body)
 Vue.use(VueLocalStorage)
 // vant components
-import { Button, Field, Cell, CellGroup } from 'vant'
-Vue.use(Button).use(Field).use(Cell).use(CellGroup)
+import { Button, Field, Cell, CellGroup, Image } from 'vant'
+Vue.use(Button).use(Field).use(Cell).use(CellGroup).use(Image)
 
 router.beforeEach((to, from, next) => {
   next()
