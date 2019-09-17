@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-07-26
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-17 00:36:21
+ * @LastEditTime: 2019-09-17 17:08:03
  * @Description: 登录页
  -->
 <template>
@@ -76,7 +76,7 @@ export default {
       try {
         const data = await this.getUserInfo(this.login)
         this.resData = data.data.account
-        this.$router.push({ name: 'Playlist' })
+        this.$router.push({ name: 'Dashboard' })
         // 关闭loading
         this.closeLoading()
       } catch (e) {

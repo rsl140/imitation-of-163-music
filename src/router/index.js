@@ -24,7 +24,15 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component (resolve) {
-        require(['../views//login/index.vue'], resolve)
+        require(['../views/login/index.vue'], resolve)
+      }
+    },
+    {
+      // 登录页
+      path: '/dashboard',
+      name: 'Dashboard',
+      component (resolve) {
+        require(['../views/dashboard/index.vue'], resolve)
       }
     },
     {
