@@ -1,7 +1,7 @@
 import Util from '../libs/util'
 import qs from 'qs'
 import Vue from 'vue'
-import store from '../store/index'
+// import store from '../store/index'
 
 // Util.ajax.defaults.headers.common = {
 //   'X-Requested-With': 'XMLHttpRequest'
@@ -39,10 +39,9 @@ Util.ajax.interceptors.response.use(response => {
   closeLoading()
 
   return response
-
 }, error => {
   const res = error.response
-  let { code } = res.data
+  const { code } = res.data
 
   switch (code) {
     case 401:
@@ -50,18 +49,19 @@ Util.ajax.interceptors.response.use(response => {
       console.log('权限不足')
       Vue.ls.remove('BOBLOG_ADMIN_TOKEN')
       window.location.href = '/login'
-      break;
+      break
 
     case 404:
       console.log('404不存在')
-      break;
+      break
 
     case 412:
       console.log(res.data.message)
       break
 
+    // eslint-disable-next-line no-case-declarations
     case 422:
-      let errors = '';
+      let errors = ''
       if (res.data.errors) {
         const arr = []
         for (const key in res.data.errors) {

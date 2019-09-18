@@ -2,36 +2,42 @@
  * @Author: rsl
  * @Date: 2019-09-17 17:53:22
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-17 23:46:54
+ * @LastEditTime: 2019-09-18 15:20:20
  * @Description: 搜索框导航栏
  -->
 <template>
   <div>
     <div class="search">
-      <transition name="van-fade">
+      <transition name="van-slide-left">
         <div class="iconfont" v-show="leftIcon">&#xe61b;</div>
       </transition>
       <van-search
         class="search-input"
         :show-action="!leftIcon"
-        placeholder="请输入搜索关键词"
-        v-model="value"
+        :placeholder="placeholder"
+        v-model="searchKeyword"
         @focus="searchFocus"
         @cancel="searchCancel"
+        @search="search"
       />
       <div class="iconfont" style="font-size: .8rem;">&#xe60a;</div>
     </div>
-    <div class="search-content wrapper" v-show="!leftIcon">
-      <div class="content">
+    <!-- v-if="!leftIcon && history" -->
+    <!-- <div class="search-history">
+      <search-history :keywords="history"></search-history>
+    </div> -->
+    <scroll class="search-content" v-show="!leftIcon">
+      <div>
         <search-card :index="index + 1" v-for="(item, index) in 100" :key="index"></search-card>
       </div>
-    </div>
+    </scroll>
   </div>
 </template>
 
 <script>
-import BScroll from 'better-scroll'
 import searchCard from './search-card'
+import searchHistory from './search-history'
+import scroll from '@/components/scroll'
 
 export default {
   name: '',
@@ -41,15 +47,19 @@ export default {
   },
   data () {
     return {
-      value: '',
-      leftIcon: true
+      searchKeyword: '',
+      leftIcon: true,
+      placeholder: '请输入搜索关键词',
+      history: this.$ls.get('searchHistory')
     }
   },
   computed: {
 
   },
   components: {
-    searchCard
+    searchCard,
+    searchHistory,
+    scroll
   },
   filter: {
 
@@ -58,6 +68,17 @@ export default {
 
   },
   methods: {
+    search (val) {
+      let history = []
+      if (this.$ls.get('searchHistory')) {
+        history = this.$ls.get('searchHistory')
+        history.push(val)
+      } else {
+        history.push(val)
+      }
+      this.$ls.set('searchHistory', history)
+      this.history = history
+    },
     searchFocus () {
       this.leftIcon = false
     },
@@ -75,7 +96,7 @@ export default {
 
   },
   mounted () {
-    this.scroll = new BScroll('.wrapper')
+
   },
   beforeUpdate () {
 
@@ -122,11 +143,15 @@ export default {
   }
 }
 
+.search-history {
+  widows: 100%;
+}
+
 .search-content {
   z-index: 40;
   overflow: hidden;
   position: absolute;
-  top:1.25rem;
+  top: 1.25rem;
   bottom: 0;
   left: 0;
   right: 0;

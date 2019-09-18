@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-09-17 17:53:22
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-17 23:44:08
+ * @LastEditTime: 2019-09-18 10:35:55
  * @Description: 搜索框卡片
  -->
 <template>
@@ -32,13 +32,6 @@ export default {
       type: [Number],
       default: null,
       required: false
-    },
-    musicInfo: {
-      type: [Array, Object],
-      default: function () {
-        return []
-      },
-      required: true
     }
   },
   data () {
@@ -47,7 +40,7 @@ export default {
   },
   methods: {
     handleClick () {
-      this.$emit('playMusic', this.musicInfo, this.index - 1)
+      // this.$emit('playMusic', this.musicInfo, this.index - 1)
     }
   }
 }

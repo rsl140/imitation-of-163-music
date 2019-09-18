@@ -28,7 +28,7 @@ export default new Router({
       }
     },
     {
-      // 登录页
+      // 首页
       path: '/dashboard',
       name: 'Dashboard',
       component (resolve) {
