@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-09-18 11:31:22
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-18 15:16:29
+ * @LastEditTime: 2019-09-19 10:03:38
  * @Description: 搜索历史(本地存储)
  -->
 <template>
@@ -14,7 +14,7 @@
       <li v-for="(item, index) in 50" :key="index">{{item}}</li>
     </ul>
     <div class="loading-wrapper"></div> -->
-    <div>
+    <div ref="tabList">
       <div class="history-item" v-for="(item, index) in 50" :key="index">{{item}}</div>
     </div>
   </scroll>
@@ -50,26 +50,17 @@ export default {
 
   },
   watch: {
-    // keywords () {
-    //   this.$nextTick(() => {
-    //     this.initScroll()
-    //   })
-    // }
   },
   methods: {
-    // initScroll () {
-    //   this.$nextTick(() => {
-    //     if (!this.scroll) {
-    //       this.scroll = new BScroll('.history', {
-    //         click: true,
-    //         scrollX: true,
-    //         eventPassthrough: 'vertical'
-    //       })
-    //     } else {
-    //       this.scroll.refresh()
-    //     }
-    //   })
-    // }
+    _initTabListWidth () {
+      const tabList = this.$refs.tabList
+      const items = tabList.children
+      let width = 0
+      for (let i = 0; i < items.length; i++) {
+        width += items[i].clientWidth
+      }
+      tabList.style.width = (width + 1) + 'px'
+    }
   },
   beforeCreate () {
 
@@ -80,7 +71,7 @@ export default {
 
   },
   mounted () {
-    // this.initScroll()
+    this._initTabListWidth()
   },
   beforeUpdate () {
 
@@ -105,12 +96,13 @@ export default {
 
 <style scoped lang="scss">
 .history {
-  position: absolute;
-  left:0;
-  right:0;
-  top: 1.25rem;
-  bottom: 0;
+  // position: absolute;
+  // left:0;
+  // right:0;
+  // top: 1.25rem;
+  // bottom: 0;
   height: .725rem;
+  width: auto;
   font-size: .4rem;
   overflow: hidden;
   white-space: nowrap;

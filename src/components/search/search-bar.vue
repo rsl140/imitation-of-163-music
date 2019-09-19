@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-09-17 17:53:22
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-18 15:20:20
+ * @LastEditTime: 2019-09-19 10:14:03
  * @Description: 搜索框导航栏
  -->
 <template>
@@ -22,10 +22,9 @@
       />
       <div class="iconfont" style="font-size: .8rem;">&#xe60a;</div>
     </div>
-    <!-- v-if="!leftIcon && history" -->
-    <!-- <div class="search-history">
+    <div class="search-history" v-if="!leftIcon && history">
       <search-history :keywords="history"></search-history>
-    </div> -->
+    </div>
     <scroll class="search-content" v-show="!leftIcon">
       <div>
         <search-card :index="index + 1" v-for="(item, index) in 100" :key="index"></search-card>
@@ -143,15 +142,12 @@ export default {
   }
 }
 
-.search-history {
-  widows: 100%;
-}
-
 .search-content {
   z-index: 40;
   overflow: hidden;
   position: absolute;
-  top: 1.25rem;
+  // top: 1.25rem;
+  top: 2rem;
   bottom: 0;
   left: 0;
   right: 0;
