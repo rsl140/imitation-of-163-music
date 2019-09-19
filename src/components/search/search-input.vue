@@ -2,18 +2,18 @@
  * @Author: rsl
  * @Date: 2019-09-17 17:53:22
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-19 10:14:03
+ * @LastEditTime: 2019-09-19 23:05:17
  * @Description: 搜索框导航栏
  -->
 <template>
   <div>
     <div class="search">
       <transition name="van-slide-left">
-        <div class="iconfont" v-show="leftIcon">&#xe61b;</div>
+        <div class="iconfont" v-show="isSearch">&#xe61b;</div>
       </transition>
       <van-search
         class="search-input"
-        :show-action="!leftIcon"
+        :show-action="!isSearch"
         :placeholder="placeholder"
         v-model="searchKeyword"
         @focus="searchFocus"
@@ -22,22 +22,10 @@
       />
       <div class="iconfont" style="font-size: .8rem;">&#xe60a;</div>
     </div>
-    <div class="search-history" v-if="!leftIcon && history">
-      <search-history :keywords="history"></search-history>
-    </div>
-    <scroll class="search-content" v-show="!leftIcon">
-      <div>
-        <search-card :index="index + 1" v-for="(item, index) in 100" :key="index"></search-card>
-      </div>
-    </scroll>
   </div>
 </template>
 
 <script>
-import searchCard from './search-card'
-import searchHistory from './search-history'
-import scroll from '@/components/scroll'
-
 export default {
   name: '',
   mixins: [],
@@ -47,18 +35,15 @@ export default {
   data () {
     return {
       searchKeyword: '',
-      leftIcon: true,
-      placeholder: '请输入搜索关键词',
-      history: this.$ls.get('searchHistory')
+      isSearch: true,
+      placeholder: '请输入搜索关键词'
     }
   },
   computed: {
 
   },
   components: {
-    searchCard,
-    searchHistory,
-    scroll
+
   },
   filter: {
 
@@ -79,10 +64,12 @@ export default {
       this.history = history
     },
     searchFocus () {
-      this.leftIcon = false
+      this.isSearch = false
+      this.$emit('searchFocus', this.isSearch)
     },
     searchCancel () {
-      this.leftIcon = true
+      this.isSearch = true
+      this.$emit('searchCancel', this.isSearch)
     }
   },
   beforeCreate () {
@@ -142,17 +129,5 @@ export default {
   }
 }
 
-.search-content {
-  z-index: 40;
-  overflow: hidden;
-  position: absolute;
-  // top: 1.25rem;
-  top: 2rem;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #eee;
-  font-size: .4rem;
-}
 </style>
 

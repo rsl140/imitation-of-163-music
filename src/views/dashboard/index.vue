@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-09-17 17:06:24
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-17 23:41:19
+ * @LastEditTime: 2019-09-19 22:50:36
  * @Description: 首页导航
  -->
 <template>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import searchBar from '@/components/search/search-bar'
+import searchBar from '@/components/search/index'
 export default {
   name: 'Dashboard',
   mixins: [],
