@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-09-17 17:53:22
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-19 23:05:17
+ * @LastEditTime: 2019-09-19 23:36:53
  * @Description: 搜索框导航栏
  -->
 <template>
@@ -11,15 +11,16 @@
       <transition name="van-slide-left">
         <div class="iconfont" v-show="isSearch">&#xe61b;</div>
       </transition>
-      <van-search
-        class="search-input"
-        :show-action="!isSearch"
-        :placeholder="placeholder"
-        v-model="searchKeyword"
-        @focus="searchFocus"
-        @cancel="searchCancel"
-        @search="search"
-      />
+      <form class="search-input" action="/">
+        <van-search
+          :show-action="!isSearch"
+          :placeholder="placeholder"
+          v-model="searchKeyword"
+          @focus="searchFocus"
+          @cancel="searchCancel"
+          @search="search"
+        />
+      </form>
       <div class="iconfont" style="font-size: .8rem;">&#xe60a;</div>
     </div>
   </div>

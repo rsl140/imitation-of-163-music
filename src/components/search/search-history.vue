@@ -2,18 +2,24 @@
  * @Author: rsl
  * @Date: 2019-09-18 11:31:22
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-19 22:47:00
+ * @LastEditTime: 2019-09-19 23:47:42
  * @Description: 搜索历史(本地存储)
  -->
 <template>
-  <scroll
-    class="history"
-    :scrollX="true"
-  >
-    <div ref="itemList">
-      <div class="history-item" v-for="(item, index) in 50" :key="index">{{item}}</div>
+  <div class="history">
+    <div class="history-title">
+      <div class="history-name">搜索历史</div>
+      <div class="iconfont">&#xe604;</div>
     </div>
-  </scroll>
+    <scroll
+      class="history-warp"
+      :scrollX="true"
+    >
+      <div ref="itemList">
+        <div class="history-item" v-for="(item, index) in 50" :key="index">{{item}}</div>
+      </div>
+    </scroll>
+  </div>
 </template>
 
 <script>
@@ -92,17 +98,40 @@ export default {
 
 <style scoped lang="scss">
 .history {
+  height: 1.6rem;
+  width: 100%;
+  font-size: .4rem;
+  margin-top: .2rem;
+}
+
+.history-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: .3rem;
+  padding: 0 .1rem;
+
+  .history-name {
+    font-weight: bold;
+  }
+
+  .iconfont {
+    color: #777;
+  }
+}
+
+.history-warp {
   height: .725rem;
   width: auto;
-  font-size: .4rem;
   overflow: hidden;
   white-space: nowrap;
 
   .history-item {
     padding: .125rem .25rem;
     background: #eee;
-    border-radius: 0.2125rem;
+    border-radius: 0.3125rem;
     display: inline-block;
+    margin-left: .2rem;
   }
 }
 </style>
