@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-07-25
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-08
+ * @LastEditTime: 2019-09-23 16:15:08
  * @Description: 歌单页
  -->
 <template>
@@ -48,8 +48,6 @@ export default {
   created () {
     // 获取用户歌单
     this.getPlayList()
-    // 开启loading
-    this.openLoading()
   },
   // mounted () {
   //   this.scroll = new Bscroll(this.$refs.wrapper)
@@ -62,10 +60,6 @@ export default {
   methods: {
     ...mapActions({
       getPlayListInfo: 'playlist/getPlayListInfo',
-      // 开启loading
-      openLoading: 'loading/openLoading',
-      // 关闭loading
-      closeLoading: 'loading/closeLoading',
       setMusicInfo: 'playlist/setMusicInfo'
     }),
     /**
@@ -79,11 +73,8 @@ export default {
       try {
         const data = await this.getPlayListInfo(params)
         this.resData = data.data.playlist
-        // 关闭loading
-        this.closeLoading()
       } catch (e) {
-        // 关闭loading
-        this.closeLoading()
+        console.log(e)
       }
     },
     /**

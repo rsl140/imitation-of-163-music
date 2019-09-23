@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-07-25
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-08
+ * @LastEditTime: 2019-09-23 16:15:36
  * @Description: 播放器页面
  -->
 <template>
@@ -113,10 +113,6 @@ export default {
   methods: {
     ...mapActions({
       getMusicUrl: 'playing/getMusicUrl',
-      // 开启loading
-      openLoading: 'loading/openLoading',
-      // 关闭loading
-      closeLoading: 'loading/closeLoading',
       setMusicInfo: 'playlist/setMusicInfo'
     }),
     async getMusucInfo () {
@@ -136,11 +132,8 @@ export default {
           }
         }, 150)
         this.isPlay = true
-        // 关闭loading
-        this.closeLoading()
       } catch (e) {
-        // 关闭loading
-        this.closeLoading()
+        console.log(e)
       }
     },
     /**
