@@ -2,21 +2,21 @@
  * @Author: rsl
  * @Date: 2019-09-18 11:31:22
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-19 23:47:42
+ * @LastEditTime: 2019-09-23 15:28:25
  * @Description: 搜索历史(本地存储)
  -->
 <template>
   <div class="history">
     <div class="history-title">
       <div class="history-name">搜索历史</div>
-      <div class="iconfont">&#xe604;</div>
+      <div class="iconfont" @click="handleRemove">&#xe604;</div>
     </div>
     <scroll
       class="history-warp"
       :scrollX="true"
     >
       <div ref="itemList">
-        <div class="history-item" v-for="(item, index) in 50" :key="index">{{item}}</div>
+        <div class="history-item" v-for="(item, index) in keywords" :key="index">{{item}}</div>
       </div>
     </scroll>
   </div>
@@ -62,6 +62,9 @@ export default {
         width += items[i].clientWidth
       }
       itemList.style.width = (width + 1) + 'px'
+    },
+    handleRemove () {
+      this.$emit('handleRemove')
     }
   },
   beforeCreate () {
@@ -117,6 +120,7 @@ export default {
 
   .iconfont {
     color: #777;
+    cursor: pointer;
   }
 }
 

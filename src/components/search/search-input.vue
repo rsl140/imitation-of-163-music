@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-09-17 17:53:22
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-19 23:36:53
+ * @LastEditTime: 2019-09-23 15:40:26
  * @Description: 搜索框导航栏
  -->
 <template>
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: '',
   mixins: [],
@@ -37,7 +39,8 @@ export default {
     return {
       searchKeyword: '',
       isSearch: true,
-      placeholder: '请输入搜索关键词'
+      placeholder: '请输入搜索关键词',
+      defaultData: {}
     }
   },
   computed: {
@@ -53,6 +56,18 @@ export default {
 
   },
   methods: {
+    ...mapActions({
+      searchDefaultInfo: 'search/searchDefaultInfo'
+    }),
+    async getSearchDefault (val) {
+      try {
+        const data = await this.searchDefaultInfo()
+        this.placeholder = data.data.showKeyword
+        this.defaultData = data.data
+      } catch (e) {
+        this.$toast(e)
+      }
+    },
     search (val) {
       let history = []
       if (this.$ls.get('searchHistory')) {
@@ -62,7 +77,7 @@ export default {
         history.push(val)
       }
       this.$ls.set('searchHistory', history)
-      this.history = history
+      this.$emit('search', history)
     },
     searchFocus () {
       this.isSearch = false
@@ -83,7 +98,7 @@ export default {
 
   },
   mounted () {
-
+    this.getSearchDefault()
   },
   beforeUpdate () {
 

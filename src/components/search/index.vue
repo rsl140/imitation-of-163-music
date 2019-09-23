@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-09-17 17:53:22
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-22 23:19:33
+ * @LastEditTime: 2019-09-23 15:34:21
  * @Description: 搜索页
  -->
 <template>
@@ -11,18 +11,23 @@
       <search-input
         @searchFocus="searchFocus"
         @searchCancel="searchCancel"
+        @search="handleSearch"
       >
       </search-input>
     </div>
 
     <div>
-      <scroll class="search-content" v-show="!isSearch">
+      <scroll
+        class="search-content"
+        v-show="!isSearch"
+        :style="history ? { top: '1.27rem' } : { top: '1.2rem' }"
+      >
         <div>
           <div class="search-history" v-if="!isSearch && history">
-            <search-history :keywords="history"></search-history>
+            <search-history :keywords="history" @handleRemove="handleRemoveSearchHistory"></search-history>
           </div>
           <div class="search-content_title" v-show="!isSearch">热搜榜</div>
-          <search-card :index="index + 1" v-for="(item, index) in 100" :key="index"></search-card>
+          <search-card :index="index + 1" :item="item" v-for="(item, index) in hotInfo" :key="index"></search-card>
         </div>
       </scroll>
     </div>
@@ -30,6 +35,9 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import { mapState } from 'vuex'
+
 import searchInput from './search-input'
 import searchCard from './search-card'
 import searchHistory from './search-history'
@@ -46,11 +54,13 @@ export default {
       searchKeyword: '',
       isSearch: true,
       placeholder: '请输入搜索关键词',
-      history: this.$ls.get('searchHistory')
+      history: this.$ls.get('searchHistory') || null
     }
   },
   computed: {
-
+    ...mapState({
+      hotInfo: state => state.search.hotSearchInfo
+    })
   },
   components: {
     searchInput,
@@ -65,6 +75,23 @@ export default {
 
   },
   methods: {
+    ...mapActions({
+      getSearchHotInfo: 'search/getSearchHotInfo'
+    }),
+    async getSearchHot (val) {
+      try {
+        await this.getSearchHotInfo()
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    handleSearch (history) {
+      this.history = history
+    },
+    handleRemoveSearchHistory () {
+      this.$ls.remove('searchHistory')
+      this.history = null
+    },
     searchFocus (isSearch) {
       this.isSearch = isSearch
     },
@@ -82,7 +109,7 @@ export default {
 
   },
   mounted () {
-
+    this.getSearchHot()
   },
   beforeUpdate () {
 

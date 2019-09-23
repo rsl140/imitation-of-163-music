@@ -2,21 +2,33 @@
  * @Author: rsl
  * @Date: 2019-09-17 17:53:22
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-19 23:41:24
+ * @LastEditTime: 2019-09-23 14:57:08
  * @Description: 搜索框卡片
  -->
 <template>
   <div class="scard" @click="handleClick">
     <div class="scard-wrap">
-      <div class="scard-index" v-if="index">
+      <div
+        v-if="index"
+        class="scard-index"
+        :class="index < 4 ? 'scard-index_active' : ''"
+      >
         {{index}}
       </div>
       <div class="scard-content">
         <div class="scard-content_title">
-          content_title
+          <span class="scard-content_name">
+            {{item.searchWord}}
+          </span>
+          <span class="scard-content_score">
+            {{item.score}}
+          </span>
+          <span class="scard-content_img">
+            <img style="width: 100%;" :src="item.iconUrl" />
+          </span>
         </div>
         <div class="scard-content_author">
-          content_author
+          {{item.content}}
         </div>
       </div>
     </div>
@@ -32,6 +44,13 @@ export default {
       type: [Number],
       default: null,
       required: false
+    },
+    item: {
+      type: [Object],
+      default: () => {
+        return {}
+      },
+      required: true
     }
   },
   data () {
@@ -40,7 +59,6 @@ export default {
   },
   methods: {
     handleClick () {
-      // this.$emit('playMusic', this.musicInfo, this.index - 1)
     }
   }
 }
@@ -48,11 +66,11 @@ export default {
 
 <style lang="scss" scoped>
 .scard {
-  height: 1.6rem;
+  height: 1.4rem;
   padding: .1rem .3rem;
   z-index: 4;
 
-  &-wrap {
+  .scard-wrap {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -60,26 +78,51 @@ export default {
     height: 1.6rem;
   }
 
-  &-index {
+  .scard-index {
     font-size: .4rem;
     color: #999;
     text-align: center;
     margin-right: .4rem;
   }
 
-  &-content {
+  .scard-index_active {
+    color: red;
+  }
+
+  .scard-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     height: 50%;
+    font-size: .4rem;
 
-    &_title {
+    .scard-content_title {
       font-size: .3rem;
+      font-weight: bold;
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+
+      .scard-content_name {
+        margin-right: .1rem;
+      }
+
+      .scard-content_score {
+        color: #ccc;
+        font-size: .2rem;
+        margin-right: .1rem;
+      }
+
+      .scard-content_img {
+        width: .5rem;
+        margin-right: .1rem;
+      }
     }
 
-    &_author {
-      color: #999;
+    .scard-content_author {
+      color: #777;
+      font-size: .2rem;
     }
   }
 }
