@@ -1,8 +1,8 @@
 <!--
  * @Author: rsl
- * @Date: 2019-09-17 17:53:22
+ * @Date: 2019-09-17
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-23 15:34:21
+ * @LastEditTime: 2019-09-23
  * @Description: 搜索页
  -->
 <template>

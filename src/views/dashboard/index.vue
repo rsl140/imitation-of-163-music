@@ -1,8 +1,8 @@
 <!--
  * @Author: rsl
- * @Date: 2019-09-17 17:06:24
+ * @Date: 2019-09-17
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-19 22:50:36
+ * @LastEditTime: 2019-09-23
  * @Description: 首页导航
  -->
 <template>
@@ -31,7 +31,6 @@ export default {
     searchBar
   },
   filter: {
-
   },
   watch: {
 
