@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-09-17
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-23
+ * @LastEditTime: 2019-09-30
  * @Description: 搜索框卡片
  -->
 <template>
@@ -86,7 +86,7 @@ export default {
   }
 
   .scard-index_active {
-    color: red;
+    color: #c20c0c;
   }
 
   .scard-content {

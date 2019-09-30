@@ -2,17 +2,19 @@
  * @Author: rsl
  * @Date: 2019-09-17
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-23
+ * @LastEditTime: 2019-09-30
  * @Description: 首页导航
  -->
 <template>
   <div>
     <search-bar></search-bar>
+    <tabbar></tabbar>
   </div>
 </template>
 
 <script>
 import searchBar from '@/components/search/index'
+import tabbar from './tabbar/index'
 export default {
   name: 'Dashboard',
   mixins: [],
@@ -28,7 +30,8 @@ export default {
 
   },
   components: {
-    searchBar
+    searchBar,
+    tabbar
   },
   filter: {
   },
@@ -72,15 +75,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// .box {
-//   position: fixed;
-//   left: 0;
-//   top: 0;
-//   bottom: 0;
-//   z-index: 30;
-//   width: 100%;
-//   background: #fff;
-//   display: flex;
-// }
 </style>
 
