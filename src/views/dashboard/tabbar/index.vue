@@ -1,6 +1,13 @@
+<!--
+ * @Author: rsl
+ * @Date: 2019-09-30
+ * @LastEditors: rsl
+ * @LastEditTime: 2019-11-18
+ * @Description: 底部导航栏
+ -->
 <template>
-  <div>
-    <van-tabbar v-model="active" active-color="#ec5749" inactive-color="#777">
+  <div class="tabbar-warp">
+    <van-tabbar v-model="active" active-color="#ec5749" inactive-color="#777" :z-index="9999">
       <van-tabbar-item>
         <span>发现</span>
         <template
@@ -116,6 +123,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.tabbar-warp {
+  /deep/ .van-tabbar {
+    background: rgba($color: #ffffff, $alpha: 0.9);
+  }
+}
+
 .background-red {
   padding: .11rem .1rem;
   background: #ec5749;

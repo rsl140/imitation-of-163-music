@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-09-17
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-23
+ * @LastEditTime: 2019-11-18
  * @Description: 搜索页
  -->
 <template>
@@ -146,7 +146,7 @@ export default {
   overflow: hidden;
   position: absolute;
   top: 1.27rem;
-  bottom: 0;
+  bottom: 1.45rem;
   left: 0;
   right: 0;
   font-size: .4rem;
