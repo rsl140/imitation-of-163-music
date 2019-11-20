@@ -23,7 +23,7 @@
 
     <div class="content-warp">
       <div class="button-box">
-        <span class="iconfont" style="font-size: 1.5rem;">
+        <span class="iconfont" style="font-size: 1.1rem;">
           &#xe609;
         </span>
       </div>
@@ -34,7 +34,7 @@
 
     <div class="content-warp">
       <div class="button-box">
-        <span class="iconfont" style="font-size: 1rem;">
+        <span class="iconfont" style="font-size: .7rem;">
           &#xe605;
         </span>
       </div>
@@ -45,7 +45,7 @@
 
     <div class="content-warp">
       <div class="button-box">
-        <span class="iconfont" style="font-size: 1.5rem;">
+        <span class="iconfont" style="font-size: 1.1rem;">
           &#xe60a;
         </span>
       </div>
@@ -56,7 +56,7 @@
 
     <div class="content-warp">
       <div class="button-box">
-        <span class="iconfont" style="font-size: 1rem;">
+        <span class="iconfont" style="font-size: .7rem;">
           &#xe603;
         </span>
       </div>
@@ -142,26 +142,26 @@ export default {
     width: 1.8rem;
 
     .button-box {
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: .75rem;
+      width: 1rem;
+      height: 1rem;
+      border-radius: .5rem;
       background: linear-gradient(to right, #ec6454 , #ea3c2b);
       display: flex;
       justify-content: center;
       align-items:center;
 
       .iconfont {
-        font-size: .7rem;
+        font-size: .55rem;
         color: #fff;
         position: relative;
       }
 
       .date {
         position: absolute;
-        top: .26rem;
-        left: .15rem;
+        top: .19rem;
+        left: .1rem;
         color: #fff;
-        font-size: .35rem;
+        font-size: .3rem;
       }
     }
 

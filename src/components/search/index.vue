@@ -111,6 +111,7 @@ export default {
   left: 0;
   right: 0;
   font-size: .4rem;
+  background: #fff;
 }
 </style>
 
