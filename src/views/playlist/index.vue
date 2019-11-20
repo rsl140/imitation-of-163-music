@@ -7,15 +7,15 @@
  -->
 <template>
   <div>
-    <div class="list" ref="wrapper">
+    <div ref="wrapper" class="list">
       <div>
         <div class="list-introduce_wrap">
-          <div class="list-introduce_cover" :style="{ backgroundImage: 'url(' + resData.coverImgUrl + ')'}"></div>
+          <div class="list-introduce_cover" :style="{ backgroundImage: 'url(' + resData.coverImgUrl + ')'}" />
           <div class="list-nav">
-            <list-nav></list-nav>
+            <list-nav />
           </div>
           <div class="list-introduce_content">
-            <list-introduction :info="resData"></list-introduction>
+            <list-introduction :info="resData" />
           </div>
         </div>
         <div class="list-list">
@@ -25,8 +25,7 @@
             :index="index + 1"
             :music-info="item"
             @playMusic="playMusic"
-          >
-          </list-music-card>
+          />
         </div>
       </div>
     </div>
@@ -45,10 +44,6 @@ export default {
     ListMusicCard,
     ListNav
   },
-  created () {
-    // 获取用户歌单
-    this.getPlayList()
-  },
   // mounted () {
   //   this.scroll = new Bscroll(this.$refs.wrapper)
   // },
@@ -56,6 +51,10 @@ export default {
     return {
       resData: []
     }
+  },
+  created () {
+    // 获取用户歌单
+    this.getPlayList()
   },
   methods: {
     ...mapActions({

@@ -14,10 +14,10 @@
       歌单
     </div>
     <div class="nav-bar">
-      <div class="nav-line"></div>
-      <div class="nav-line"></div>
-      <div class="nav-line"></div>
-      <div class="nav-line"></div>
+      <div class="nav-line" />
+      <div class="nav-line" />
+      <div class="nav-line" />
+      <div class="nav-line" />
     </div>
   </div>
 </template>

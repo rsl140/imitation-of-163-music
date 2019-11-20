@@ -15,10 +15,10 @@
         播放全部
       </div>
       <div class="play-count">
-        (共{{info.trackCount}}首)
+        (共{{ info.trackCount }}首)
       </div>
-      <div class="play-collection" v-if="info.subscribedCount > 0">
-        收藏:{{info.subscribedCount}}
+      <div v-if="info.subscribedCount > 0" class="play-collection">
+        收藏:{{ info.subscribedCount }}
       </div>
     </div>
   </div>

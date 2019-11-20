@@ -1,41 +1,41 @@
 <template>
   <section :class="loadingClass">
-    <div class="loading-box"></div>
+    <div class="loading-box" />
     <div class="loading-text">{{ text }}</div>
   </section>
 </template>
 <script>
-  export default {
-    props: ['text'],
-    data () {
-      return {
-        // 是否置顶
-        isFixed: false
-      }
-    },
-    computed: {
-      loadingClass () {
-        return this.isFixed ? 'loading-wrap loading-wrap-fixed-top' : 'loading-wrap'
-      }
+export default {
+  props: ['text'],
+  data () {
+    return {
+      // 是否置顶
+      isFixed: false
+    }
+  },
+  computed: {
+    loadingClass () {
+      return this.isFixed ? 'loading-wrap loading-wrap-fixed-top' : 'loading-wrap'
+    }
 
-    },
-    mounted () {
-      // 监听滚动条
-      window.addEventListener('scroll', this.handleScroll)
-    },
-    destroyed () {
-      // 移除滚动条
-      window.removeEventListener('scroll', this.handleScroll)
-    },
-    methods: {
-      // 处理滚动条
-      handleScroll () {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-        const offsetTop = document.querySelector('#nav').offsetTop
-        this.isFixed = !!(scrollTop > offsetTop)
-      }
+  },
+  mounted () {
+    // 监听滚动条
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  destroyed () {
+    // 移除滚动条
+    window.removeEventListener('scroll', this.handleScroll)
+  },
+  methods: {
+    // 处理滚动条
+    handleScroll () {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      const offsetTop = document.querySelector('#nav').offsetTop
+      this.isFixed = !!(scrollTop > offsetTop)
     }
   }
+}
 </script>
 <style scoped>
   .loading-wrap {

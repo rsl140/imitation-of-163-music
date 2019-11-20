@@ -2,7 +2,7 @@
  * @Author: rsl
  * @Date: 2019-09-17
  * @LastEditors: rsl
- * @LastEditTime: 2019-11-18
+ * @LastEditTime: 2019-11-20
  * @Description: 搜索页
 -->
 <template>
@@ -43,10 +43,11 @@ import searchHistory from './search-history'
 import scroll from '@/components/scroll'
 
 export default {
-  name: '',
-  mixins: [],
-  props: {
-
+  components: {
+    searchInput,
+    searchCard,
+    searchHistory,
+    scroll
   },
   data () {
     return {
@@ -61,17 +62,8 @@ export default {
       hotInfo: state => state.search.hotSearchInfo
     })
   },
-  components: {
-    searchInput,
-    searchCard,
-    searchHistory,
-    scroll
-  },
-  filter: {
-
-  },
-  watch: {
-
+  mounted () {
+    this.getSearchHot()
   },
   methods: {
     ...mapActions({
@@ -97,36 +89,6 @@ export default {
     searchCancel (isSearch) {
       this.isSearch = isSearch
     }
-  },
-  beforeCreate () {
-
-  },
-  created () {
-
-  },
-  beforeMount () {
-
-  },
-  mounted () {
-    this.getSearchHot()
-  },
-  beforeUpdate () {
-
-  },
-  updated () {
-
-  },
-  activited () {
-
-  },
-  deactivated () {
-
-  },
-  beforeDestroy () {
-
-  },
-  destroyed () {
-
   }
 }
 </script>

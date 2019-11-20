@@ -2,9 +2,9 @@
  * @Author: rsl
  * @Date: 2019-08-01
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-08
+ * @LastEditTime: 2019-11-20
  * @Description: 歌单页音乐列表头部歌单介绍信息
- -->
+-->
 <template>
   <div class="intro">
     <div class="intro-wrap">
@@ -13,18 +13,18 @@
       </div>
       <div class="intro-comment">
         <div class="intro-comment_title">
-        {{info.name}}
+          {{ info.name }}
         </div>
-        <div class="intro-comment_author" v-if="info.creator">
-          {{info.creator.nickname}}
+        <div v-if="info.creator" class="intro-comment_author">
+          {{ info.creator.nickname }}
         </div>
         <div class="intro-comment_summary">
-          <span v-if="info.description">{{info.description | filtersDescription}}</span>
+          <span v-if="info.description">{{ info.description | filtersDescription }}</span>
           <span v-else>编辑简介></span>
         </div>
       </div>
     </div>
-    <list-play-title :info="info"></list-play-title>
+    <list-play-title :info="info" />
   </div>
 </template>
 
@@ -36,15 +36,6 @@ export default {
   components: {
     ListPlayTitle
   },
-  props: {
-    info: {
-      type: [Array, Object],
-      default: function () {
-        return []
-      },
-      required: true
-    }
-  },
   filters: {
     filtersDescription: function (description) {
       if (description.length > 40) {
@@ -52,6 +43,15 @@ export default {
       } else {
         return description
       }
+    }
+  },
+  props: {
+    info: {
+      type: [Array, Object],
+      default: function () {
+        return []
+      },
+      required: true
     }
   },
   data () {

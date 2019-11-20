@@ -2,31 +2,31 @@
  * @Author: rsl
  * @Date: 2019-07-31
  * @LastEditors: rsl
- * @LastEditTime: 2019-08-08
+ * @LastEditTime: 2019-11-20
  * @Description: 歌单页音乐列表卡片
  -->
 <template>
   <div class="mcard" @click="handleClick">
     <div class="mcard-wrap">
-      <div class="mcard-index" v-if="index">
-        {{index}}
+      <div v-if="index" class="mcard-index">
+        {{ index }}
       </div>
       <div class="mcard-content">
         <div class="mcard-content_title">
-          {{musicInfo.name}}
+          {{ musicInfo.name }}
         </div>
         <div class="mcard-content_author">
-          <span v-for="(item, index) in musicInfo.ar" :key="index">
-            <template v-if="musicInfo.ar.length === index + 1">
-              {{item.name}}
+          <span v-for="(item, itemIndex) in musicInfo.ar" :key="itemIndex">
+            <template v-if="musicInfo.ar.length === itemIndex + 1">
+              {{ item.name }}
             </template>
             <template v-else>
-              {{item.name}}/
+              {{ item.name }}/
             </template>
           </span>
           -
           <span>
-            {{musicInfo.al.name}}
+            {{ musicInfo.al.name }}
           </span>
         </div>
       </div>

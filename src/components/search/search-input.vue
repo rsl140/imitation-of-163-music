@@ -2,20 +2,20 @@
  * @Author: rsl
  * @Date: 2019-09-17
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-23
+ * @LastEditTime: 2019-11-20
  * @Description: 搜索框导航栏
  -->
 <template>
   <div>
     <div class="search">
       <transition name="van-slide-left">
-        <div class="iconfont" v-show="isSearch">&#xe61b;</div>
+        <div v-show="isSearch" class="iconfont">&#xe61b;</div>
       </transition>
       <form class="search-input" action="/">
         <van-search
+          v-model="searchKeyword"
           :show-action="!isSearch"
           :placeholder="placeholder"
-          v-model="searchKeyword"
           @focus="searchFocus"
           @cancel="searchCancel"
           @search="search"
@@ -30,11 +30,6 @@
 import { mapActions } from 'vuex'
 
 export default {
-  name: '',
-  mixins: [],
-  props: {
-
-  },
   data () {
     return {
       searchKeyword: '',
@@ -43,17 +38,8 @@ export default {
       defaultData: {}
     }
   },
-  computed: {
-
-  },
-  components: {
-
-  },
-  filter: {
-
-  },
-  watch: {
-
+  mounted () {
+    this.getSearchDefault()
   },
   methods: {
     ...mapActions({
@@ -87,36 +73,6 @@ export default {
       this.isSearch = true
       this.$emit('searchCancel', this.isSearch)
     }
-  },
-  beforeCreate () {
-
-  },
-  created () {
-
-  },
-  beforeMount () {
-
-  },
-  mounted () {
-    this.getSearchDefault()
-  },
-  beforeUpdate () {
-
-  },
-  updated () {
-
-  },
-  activited () {
-
-  },
-  deactivated () {
-
-  },
-  beforeDestroy () {
-
-  },
-  destroyed () {
-
   }
 }
 </script>

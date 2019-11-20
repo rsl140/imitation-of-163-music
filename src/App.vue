@@ -1,29 +1,28 @@
 <template>
   <div id="app">
     <loading-view
+      v-if="isLoading"
       :text="loadingText"
-      v-if="isLoading">
-
-    </loading-view>
-    <router-view/>
+    />
+    <router-view />
   </div>
 </template>
 
 <script>
-  import loadingView from './components/loading'
-  import { mapGetters } from 'vuex'
+import loadingView from './components/loading'
+import { mapGetters } from 'vuex'
 
 export default {
-    components: {
-      loadingView
-    },
-    computed: {
-      ...mapGetters('loading', [
-        'isLoading',
-        'loadingText'
-      ])
-    }
+  components: {
+    loadingView
+  },
+  computed: {
+    ...mapGetters('loading', [
+      'isLoading',
+      'loadingText'
+    ])
   }
+}
 </script>
 
 <style>

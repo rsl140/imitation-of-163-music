@@ -13,10 +13,10 @@
     </div>
     <scroll
       class="history-warp"
-      :scrollX="true"
+      :scroll-x="true"
     >
       <div ref="itemList">
-        <div class="history-item" v-for="(item, index) in keywords" :key="index">{{item}}</div>
+        <div v-for="(item, index) in keywords" :key="index" class="history-item">{{ item }}</div>
       </div>
     </scroll>
   </div>
@@ -27,6 +27,9 @@ import scroll from '@/components/scroll'
 
 export default {
   name: '',
+  components: {
+    scroll
+  },
   mixins: [],
   props: {
     keywords: {
@@ -45,27 +48,10 @@ export default {
   computed: {
 
   },
-  components: {
-    scroll
-  },
   filter: {
 
   },
   watch: {
-  },
-  methods: {
-    _initItemListWidth () {
-      const itemList = this.$refs.itemList
-      const items = itemList.children
-      let width = 0
-      for (let i = 0; i < items.length; i++) {
-        width += items[i].clientWidth
-      }
-      itemList.style.width = (width + 1) + 'px'
-    },
-    handleRemove () {
-      this.$emit('handleRemove')
-    }
   },
   beforeCreate () {
 
@@ -84,9 +70,6 @@ export default {
   updated () {
 
   },
-  activited () {
-
-  },
   deactivated () {
 
   },
@@ -94,6 +77,23 @@ export default {
 
   },
   destroyed () {
+
+  },
+  methods: {
+    _initItemListWidth () {
+      const itemList = this.$refs.itemList
+      const items = itemList.children
+      let width = 0
+      for (let i = 0; i < items.length; i++) {
+        width += items[i].clientWidth
+      }
+      itemList.style.width = (width + 1) + 'px'
+    },
+    handleRemove () {
+      this.$emit('handleRemove')
+    }
+  },
+  activited () {
 
   }
 }

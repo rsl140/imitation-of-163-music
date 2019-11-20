@@ -2,27 +2,27 @@
  * @Author: rsl
  * @Date: 2019-07-25
  * @LastEditors: rsl
- * @LastEditTime: 2019-09-23
+ * @LastEditTime: 2019-11-20
  * @Description: 播放器页面
  -->
 <template>
   <div class="play">
-    <div class="play-bg_cover" :style="{backgroundImage: 'url(' + musicInfo.al.picUrl + ')'}"></div>
+    <div class="play-bg_cover" :style="{backgroundImage: 'url(' + musicInfo.al.picUrl + ')'}" />
     <div class="play-header">
       <div
-      class="iconfont play-header_arrow"
-      @click="preClick"
+        class="iconfont play-header_arrow"
+        @click="preClick"
       >
-      &#xe7ec;</div>
+        &#xe7ec;</div>
       <div class="play-header_title">
-        <div class="play-header_name">{{musicInfo.name}}</div>
+        <div class="play-header_name">{{ musicInfo.name }}</div>
         <div class="play-header_singer">
           <span v-for="(item, index) in musicInfo.ar" :key="item.id">
             <template v-if="musicInfo.ar.length === index + 1">
-              {{item.name}}
+              {{ item.name }}
             </template>
             <template v-else>
-              {{item.name}}/
+              {{ item.name }}/
             </template>
           </span>
         </div>
@@ -32,24 +32,24 @@
       <img src="../../assets/img/rod.png" class="play-cd_rod" :style="isPlay ? {transform: 'rotate(0deg)'} : {}">
       <div class="play-cd_wrap" :style="isPlay ? {animationPlayState: 'running'} : {}">
         <img class="play-cd_cover" src="../../assets/img/cd.png">
-        <div class="play-cd_defaultimg" :style="{backgroundImage: 'url(' + musicInfo.al.picUrl + ')'}"></div>
+        <div class="play-cd_defaultimg" :style="{backgroundImage: 'url(' + musicInfo.al.picUrl + ')'}" />
       </div>
     </div>
     <div class="play-footer">
       <div class="play-footer_box play-progress ">
-        <div class="play-timing">{{currentTime | fomatTime}}</div>
+        <div class="play-timing">{{ currentTime | fomatTime }}</div>
         <div class="play-progress_wrap">
-          <div class="play-progress_played" :style="{ width: pleayedLegth }"></div>
-          <div class="play-progress_point" :style="{ left: pleayedLegth }"></div>
+          <div class="play-progress_played" :style="{ width: pleayedLegth }" />
+          <div class="play-progress_point" :style="{ left: pleayedLegth }" />
         </div>
-        <div class="play-time">{{duration | fomatTime}}</div>
+        <div class="play-time">{{ duration | fomatTime }}</div>
       </div>
       <div class="play-footer_box">
         <div class="iconfont play-previous" @click="previous">
           &#xe7ec;
         </div>
         <div class="iconfont play-btn" @click="play">
-          {{isPlay ? '&#xe783;' : '&#xe781;'}}
+          {{ isPlay ? '&#xe783;' : '&#xe781;' }}
         </div>
         <div class="iconfont play-next" @click="next">
           &#xe7eb;
@@ -68,8 +68,7 @@
       ref="audio"
       autoplay
       @timeupdate="updateTime"
-    >
-    </audio>
+    />
   </div>
 </template>
 
@@ -80,16 +79,6 @@ import { mapActions } from 'vuex'
 export default {
   name: 'Play',
   components: {},
-  computed: {
-    ...mapState({
-      musicInfo: state => state.playlist.musicInfo,
-      musicIndex: state => state.playlist.musicIndex,
-      playListInfo: state => state.playlist.playListInfo
-    })
-  },
-  mounted () {
-    this.getMusucInfo()
-  },
   filters: {
     fomatTime: interval => {
       interval = interval | 0
@@ -109,6 +98,16 @@ export default {
       duration: 0,
       currentTime: 0
     }
+  },
+  computed: {
+    ...mapState({
+      musicInfo: state => state.playlist.musicInfo,
+      musicIndex: state => state.playlist.musicIndex,
+      playListInfo: state => state.playlist.playListInfo
+    })
+  },
+  mounted () {
+    this.getMusucInfo()
   },
   methods: {
     ...mapActions({

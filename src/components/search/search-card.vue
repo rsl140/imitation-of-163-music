@@ -13,22 +13,22 @@
         class="scard-index"
         :class="index < 4 ? 'scard-index_active' : ''"
       >
-        {{index}}
+        {{ index }}
       </div>
       <div class="scard-content">
         <div class="scard-content_title">
           <span class="scard-content_name">
-            {{item.searchWord}}
+            {{ item.searchWord }}
           </span>
           <span class="scard-content_score">
-            {{item.score}}
+            {{ item.score }}
           </span>
           <span class="scard-content_img">
-            <img style="width: 100%;" :src="item.iconUrl" />
+            <img style="width: 100%;" :src="item.iconUrl">
           </span>
         </div>
         <div class="scard-content_author">
-          {{item.content}}
+          {{ item.content }}
         </div>
       </div>
     </div>
