@@ -4,7 +4,7 @@
  * @LastEditors: rsl
  * @LastEditTime: 2019-11-18
  * @Description: 搜索页
- -->
+-->
 <template>
   <div>
     <div class="search">
@@ -12,22 +12,21 @@
         @searchFocus="searchFocus"
         @searchCancel="searchCancel"
         @search="handleSearch"
-      >
-      </search-input>
+      />
     </div>
 
     <div>
       <scroll
-        class="search-content"
         v-show="!isSearch"
+        class="search-content"
         :style="history ? { top: '1.27rem' } : { top: '1.2rem' }"
       >
         <div>
-          <div class="search-history" v-if="!isSearch && history">
-            <search-history :keywords="history" @handleRemove="handleRemoveSearchHistory"></search-history>
+          <div v-if="!isSearch && history" class="search-history">
+            <search-history :keywords="history" @handleRemove="handleRemoveSearchHistory" />
           </div>
-          <div class="search-content_title" v-show="!isSearch">热搜榜</div>
-          <search-card :index="index + 1" :item="item" v-for="(item, index) in hotInfo" :key="index"></search-card>
+          <div v-show="!isSearch" class="search-content_title">热搜榜</div>
+          <search-card v-for="(item, index) in hotInfo" :key="index" :index="index + 1" :item="item" />
         </div>
       </scroll>
     </div>

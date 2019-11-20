@@ -14,8 +14,8 @@
           slot="icon"
           slot-scope="props"
         >
-          <span class="iconfont background-red" v-if="props.active">&#xea4b;</span>
-          <span class="iconfont" v-else>&#xea4b;</span>
+          <span v-if="props.active" class="iconfont background-red">&#xea4b;</span>
+          <span v-else class="iconfont">&#xea4b;</span>
         </template>
       </van-tabbar-item>
       <van-tabbar-item>
@@ -24,8 +24,8 @@
           slot="icon"
           slot-scope="props"
         >
-          <span class="iconfont background-red" v-if="props.active">&#xe603;</span>
-          <span class="iconfont" v-else>&#xe603;</span>
+          <span v-if="props.active" class="iconfont background-red">&#xe603;</span>
+          <span v-else class="iconfont">&#xe603;</span>
         </template>
       </van-tabbar-item>
       <van-tabbar-item>
@@ -34,8 +34,8 @@
           slot="icon"
           slot-scope="props"
         >
-          <span class="iconfont background-red" v-if="props.active">&#xe601;</span>
-          <span class="iconfont" v-else>&#xe601;</span>
+          <span v-if="props.active" class="iconfont background-red">&#xe601;</span>
+          <span v-else class="iconfont">&#xe601;</span>
         </template>
       </van-tabbar-item>
       <van-tabbar-item>
@@ -44,8 +44,8 @@
           slot="icon"
           slot-scope="props"
         >
-          <span class="iconfont background-red" v-if="props.active">&#xe679;</span>
-          <span class="iconfont" v-else>&#xe679;</span>
+          <span v-if="props.active" class="iconfont background-red">&#xe679;</span>
+          <span v-else class="iconfont">&#xe679;</span>
         </template>
       </van-tabbar-item>
       <van-tabbar-item>
@@ -54,8 +54,8 @@
           slot="icon"
           slot-scope="props"
         >
-          <span class="iconfont background-red" v-if="props.active">&#xe607;</span>
-          <span class="iconfont" v-else>&#xe607;</span>
+          <span v-if="props.active" class="iconfont background-red">&#xe607;</span>
+          <span v-else class="iconfont">&#xe607;</span>
         </template>
       </van-tabbar-item>
     </van-tabbar>
@@ -65,6 +65,12 @@
 <script>
 export default {
   name: '',
+  components: {
+
+  },
+  filters: {
+
+  },
   mixins: [],
   props: {
 
@@ -77,16 +83,7 @@ export default {
   computed: {
 
   },
-  components: {
-
-  },
-  filters: {
-
-  },
   watch: {
-
-  },
-  methods: {
 
   },
   beforeCreate () {
@@ -107,9 +104,6 @@ export default {
   updated () {
 
   },
-  activited () {
-
-  },
   deactivated () {
 
   },
@@ -117,6 +111,12 @@ export default {
 
   },
   destroyed () {
+
+  },
+  methods: {
+
+  },
+  activited () {
 
   }
 }
